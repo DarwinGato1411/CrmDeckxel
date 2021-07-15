@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<window  id="wDominio"  position="center" width="90%" closable="true"  
+         apply="org.zkoss.bind.BindComposer" contentStyle="overflow:auto"
+         viewModel="@id('vm') @init('com.ec.controlador.NuevoDetalleDominio')">
+    
+    <caption label="Seguimiento de renovacion de dominio" style="font-weight:bold"/> 
+    
+    <div  class="container" >
+        <div  class="row" >
+
+            <div class="col-12 col-sm-12 col-md-4 col-lg-4  form-group "  >
+                <div class="col-12 col-sm-12 col-md-12 col-lg-12  form-group "  >
+                    <label value="(*) " style="color:red;font-weight:bold"/>Fecha de renovacion
+                
+                    <datebox compact="true" value="@bind(vm.detalleDominio.detdFechaRenovacion)"  
+                             readonly="true"   style="font-weight:bold" 
+                             buttonVisible="true" lenient="true" 
+                             class="textoFechaDateBox" 
+                             format="dd/MM/yyyy"   tooltiptext="Fecha de registro"/>
+                </div>
+                <div class="col-12 col-sm-12 col-md-12 col-lg-12   form-group "  >
+                    <label value="(*) " style="color:red;font-weight:bold"/>Costo
+                    <decimalbox format="###.#####" readonly="false" 
+                                class="form-control"
+                                value="@bind(vm.detalleDominio.detcTotal)" width="50%" />                
+                </div>
+           
+            
+                <div class="col-12 col-sm-12 col-md-12 col-lg-12  form-group "  >
+                    <label value="(*)" style="color:transparent;font-weight:bold"/>Observación:
+                    <textbox  maxlength="150"  
+                    multiline="true"
+                    rows="3"
+                              value="@bind(vm.detalleDominio.detcDescripcion)" 
+                              onChange="self.setValue(self.getValue().toUpperCase());" 
+                              class="form-control" />              
+                </div> 
+                <div class="col-12 col-sm-12 col-md-12 col-lg-12  form-group" align="center" >
+                    
+                    <image src="/iconos/save48.png"  
+                           onClick="@command('guardar')"
+                           tooltiptext="Guardar Registro"/>
+ 
+
+                </div> 
+            </div>
+                             
+            <div class="col-12 col-sm-12 col-md-8 col-lg-8  form-group "  >
+                <listbox model="@load(vm.listaDetalleDominios)" 
+                         nonselectableTags="*"  mold="paging" pageSize="50"  >
+                    <custom-attributes org.zkoss.zul.listbox.rod="true"/>                    
+                    <listhead> 
+                        <listheader width="15%"  label="RENOVACION "  /> 
+                        <listheader width="15%"  label="COSTO "  />        
+                        <listheader width="65%"  label="OBSERVACION"/>
+                        <listheader width="5%"  label=""/>
+                   
+                            
+                    </listhead>  
+                    
+                    <template name="model">                                                            
+                        <listitem>
+                    
+                            <listcell zclass = "mycss-listcell">
+                                <datebox compact="true" 
+                                         readonly="true"
+                                         buttonVisible="false"                                                        
+                                         format="medium"
+                                         value="@bind(each.detdFechaRenovacion)" width="100%" />
+                            </listcell>
+                            <listcell zclass = "mycss-listcell">
+                                <decimalbox format="###.#####" sclass="letraLisbox" 
+                                            readonly="true" value="@bind(each.detcTotal)" width="100%" />
+                            </listcell>
+                            <listcell zclass = "mycss-listcell">
+                                <label sclass="letraLisbox" 
+                                         value="@bind(each.detcDescripcion)" width="100%" />
+                            </listcell>
+                        
+                            <listcell zclass = "mycss-listcell">    
+                                <image src="/iconos/eliminar.png"
+                                       class="grow"
+                                       onClick="@command('eliminarDetalle',valor=each)" 
+                                       tooltiptext="Eliminar detalle"/>
+                                    
+                            </listcell>
+                        </listitem>
+                    </template>
+                </listbox>       
+            </div>
+            
+        </div>
+        
+    </div>
+                  
+</window>

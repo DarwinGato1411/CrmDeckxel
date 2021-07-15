@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?link rel="stylesheet" type="text/css" href="/css/boostrap/bootstrap.css"?>   
+<?link rel="stylesheet" type="text/css" href="/css/style.css"?>   
+<?init class="org.zkoss.zk.ui.util.Composition" arg0="/plantilla/plantilla.zul"?>
+<?page title="Bienvenido al sistema" contentType="text/html;charset=UTF-8"?>
+<zk xmlns:h="xhtml"  >
+  
+   
+
+    <div class="container separar"  self="@define(content)" apply="com.ec.controlador.MenuOpciones">
+        <div class="row">
+            <div class="col-12 col-sm-12 col-md-12 col-lg-12" align="center">
+                <image  src="/fondo/imagencrm.jpg" style="border-radius:20px;" 
+                       class="imgRedondaLogoLogin centrarimagen" width="50%" >
+                </image>
+     
+            </div>
+        </div>
+    </div>
+   
+
+</zk>

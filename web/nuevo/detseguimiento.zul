@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<window  id="wSeguimiento"  position="center" width="950px" closable="true"  
+         apply="org.zkoss.bind.BindComposer" contentStyle="overflow:auto"
+         viewModel="@id('vm') @init('com.ec.controlador.NuevoDetalleSeguimiento')">
+    
+    <caption label="Seguimiento de renovacion de dominio" style="font-weight:bold"/> 
+    
+    <div  class="container" >
+        <div  class="row" >
+
+            <div class="col-12 col-sm-12 col-md-4 col-lg-4  form-group "  >
+                <div class="col-12 col-sm-12 col-md-12 col-lg-12  form-group "  >
+                    <label value="(*) " style="color:red;font-weight:bold"/>Fecha contacto:
+                
+                    <datebox compact="true" value="@bind(vm.detalleSeguimiento.detsFechaContacto)"  
+                             readonly="true"   style="font-weight:bold" 
+                             buttonVisible="true" lenient="true" 
+                             class="textoFechaDateBox" 
+                             format="dd/MM/yyyy"   tooltiptext="Fecha de registro"/>
+                </div>
+                <div class="col-12 col-sm-12 col-md-12 col-lg-12  form-group "  >
+                    <label value="(*) " style="color:red;font-weight:bold"/>Proxima Fecha:
+                
+                    <datebox compact="true" value="@bind(vm.detalleSeguimiento.detsFechaProxima)"  
+                             readonly="true"   style="font-weight:bold" 
+                             buttonVisible="true" lenient="true" 
+                             class="textoFechaDateBox" 
+                             format="dd/MM/yyyy"   tooltiptext="Fecha de registro"/>
+                </div>
+              
+           
+            
+                <div class="col-12 col-sm-12 col-md-12 col-lg-12  form-group "  >
+                    <label value="(*)" style="color:transparent;font-weight:bold"/>Tipo de contacto:
+                    <textbox  maxlength="40"                             
+                              value="@bind(vm.detalleSeguimiento.detsTipoContacto)" 
+                              onChange="self.setValue(self.getValue().toUpperCase());" 
+                              class="form-control" />              
+                </div> 
+                <div class="col-12 col-sm-12 col-md-12 col-lg-12  form-group "  >
+                    <label value="(*)" style="color:transparent;font-weight:bold"/>Observación:
+                    <textbox  maxlength="150"  
+                              multiline="true"
+                              rows="3"
+                              value="@bind(vm.detalleSeguimiento.detsObservacion)" 
+                              onChange="self.setValue(self.getValue().toUpperCase());" 
+                              class="form-control" />              
+                </div> 
+                <div class="col-12 col-sm-12 col-md-12 col-lg-12  form-group" align="center" >
+                    
+                    <image src="/iconos/save48.png"  
+                           onClick="@command('guardar')"
+                           tooltiptext="Guardar Registro"/>
+ 
+
+                </div> 
+            </div>
+                             
+            <div class="col-12 col-sm-12 col-md-8 col-lg-8  form-group "  >
+                <listbox model="@load(vm.listaDetalleSeguimientos)" 
+                         nonselectableTags="*"  mold="paging" pageSize="50"  >
+                    <custom-attributes org.zkoss.zul.listbox.rod="true"/>                    
+                    <listhead> 
+                        <listheader width="15%"  label="RENOVACION "  /> 
+                        <listheader width="15%"  label="COSTO "  />        
+                        <listheader width="10%"  label="TIP. CONTACTO"/>
+                        <listheader width="50%"  label="OBSERVACION"/>
+                        <listheader width="10%"  label=""/>
+                   
+                            
+                    </listhead>  
+                    
+                    <template name="model">                                                            
+                        <listitem>
+                    
+                            <listcell zclass = "mycss-listcell">
+                                <datebox compact="true" 
+                                         readonly="true"
+                                         buttonVisible="false"                                                        
+                                         format="medium"
+                                         value="@bind(each.detsFechaContacto)" width="100%" />
+                            </listcell>
+                            <listcell zclass = "mycss-listcell">
+                                <datebox compact="true" 
+                                         readonly="true"
+                                         buttonVisible="false"                                                        
+                                         format="medium"
+                                         value="@bind(each.detsFechaProxima)" width="100%" />
+                            </listcell>
+                         
+                            <listcell zclass = "mycss-listcell">
+                                <textbox sclass="letraLisbox" readonly="true"
+                                         value="@bind(each.detsTipoContacto)" width="100%" />
+                            </listcell>
+                            <listcell zclass = "mycss-listcell">
+                                <textbox sclass="letraLisbox" readonly="true"
+                                         value="@bind(each.detsObservacion)" width="100%" />
+                            </listcell>
+                        
+                            <listcell zclass = "mycss-listcell">    
+                                <image src="/iconos/eliminar.png"
+                                       class="grow"
+                                       onClick="@command('eliminarDetalle',valor=each)" 
+                                       tooltiptext="Eliminar detalle"/>
+                                    
+                            </listcell>
+                        </listitem>
+                    </template>
+                </listbox>       
+            </div>
+            
+        </div>
+        
+    </div>
+                  
+</window>

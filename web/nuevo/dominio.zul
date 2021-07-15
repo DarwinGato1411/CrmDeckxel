@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<window  id="wDominio"  position="center" width="400px" closable="true"  
+         apply="org.zkoss.bind.BindComposer" contentStyle="overflow:auto"
+         viewModel="@id('vm') @init('com.ec.controlador.NuevoDominio')">
+    
+    <caption label="Dominio" style="font-weight:bold"/> 
+    
+    <div  class="container" >
+        <div  class="row" >
+            <div class="col-12 col-sm-12 col-md-12 col-lg-12  form-group "  >
+                <label   style="color:red;font-weight:bold" value="(*) "  />Tipo de servicio
+                <combobox    model="@load(vm.listaTipoServicios)" autodrop="true" buttonVisible="false"
+                             selectedItem="@bind(vm.tipoServicioSelected)"
+                             width="100%"
+                             class="badge badge-default btn-secondary  textoFechaDateBox"  >
+                    <template name="model">
+                        <comboitem  label="@bind(each.tipsDescripcion)" />
+                    </template>                                      
+                </combobox>
+            </div>          
+            <div class="col-12 col-sm-12 col-md-12 col-lg-12  form-group "  >
+                <label   style="color:red;font-weight:bold" value="(*) "  />Cliente
+                <combobox    model="@load(vm.listaClientesAll)" autodrop="true" buttonVisible="false"
+                             selectedItem="@bind(vm.clienteSelected)"
+                             width="100%"
+                             class="badge badge-default btn-secondary  textoFechaDateBox"  >
+                    <template name="model">
+                        <comboitem  label="@bind(each.idPersona.perNombre)"
+                                    description="@bind(each.cliNombreComercial ne null ? 'Nombre comercial= '.concat(each.cliNombreComercial) : ''))" />
+                    </template>                                      
+                </combobox>
+            </div>          
+            <div class="col-12 col-sm-12 col-md-6 col-lg-6  form-group "  >
+                <label value="(*) " style="color:red;font-weight:bold"/>Fecha de inicio:
+                
+                <datebox compact="true" value="@bind(vm.dominio.domFechaRegistro)"  
+                         readonly="true"   style="font-weight:bold" 
+                         buttonVisible="true" lenient="true" 
+                         class="textoFechaDateBox" 
+                         format="dd/MM/yyyy"   tooltiptext="Fecha de registro"/>
+            </div>
+            
+            <div class="col-12 col-sm-12 col-md-6 col-lg-6   form-group "  >
+                <label value="(*) " style="color:red;font-weight:bold"/>Costo:
+                <decimalbox format="###.#####" readonly="false" 
+                                class="form-control"
+                                value="@bind(vm.dominio.domCosto)" width="96%" />                
+            </div>
+            
+            <div class="col-12 col-sm-12 col-md-12 col-lg-12  form-group "  >
+                <label value="(*)" style="color:transparent;font-weight:bold"/>Observación:
+                <textbox  maxlength="150"  
+                          value="@bind(vm.dominio.domDescripcion)" 
+                          onChange="self.setValue(self.getValue().toUpperCase());" 
+                          class="form-control" />              
+            </div> 
+       
+        </div>
+                             
+        <div class="col-12 col-sm-12 col-md-12 col-lg-12  form-group" align="center" >
+                    
+            <image src="/iconos/save48.png"  
+                   onClick="@command('guardar')"
+                   tooltiptext="Guardar Registro"/>
+ 
+
+        </div> 
+    </div>
+                  
+</window>

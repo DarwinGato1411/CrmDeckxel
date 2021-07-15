@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?link rel="stylesheet" type="text/css" href="/css/boostrap/bootstrap.css"?>  
+<?link rel="stylesheet" type="text/css" href="/css/style.css"?>
+<?init class="com.ec.seguridad.Autentificador"?>
+<?init class="org.zkoss.zk.ui.util.Composition" arg0="/plantilla/plantilla.zul"?>
+<zk  >
+    <div class="container" self="@define(content)" apply="org.zkoss.bind.BindComposer" 
+         viewModel="@id('vm') @init('com.ec.controlador.AdministrarSeguimiento')" >
+        <div class="row">
+            <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+               
+                
+                <tabbox   class="col-12 col-sm-12 col-md-12 col-lg-12">
+                    <tabs >
+                        <tab label="Seguimiento" sclass="menutabs" />                                 
+                    </tabs>
+                    <tabpanels >
+                
+                        <tabpanel height="auto" hflex="min">            
+                            <div class="container">
+                                            
+                                <div class="row" >
+                                    <div class="col-12 col-sm-12 col-md-6 col-lg-6  ">
+                                        <image  src="/iconos/nuevo_pro-24.png"
+                                                class="btn btn btn-secondary btn-sm "
+                                                onClick="@command('nuevo')"
+                                                tooltiptext="Nuevo cliente"/>
+                                    </div>    
+                                                         
+                                    <div class="col-12 col-sm-12 col-md-6 col-lg-6 " align="end">
+                                        <datebox compact="true" value="@bind(vm.inicio)"  
+                                                 readonly="true"   style="font-weight:bold" 
+                                                 buttonVisible="true" lenient="true" 
+                                                 class="textoFechaDateBox" 
+                                                 format="dd/MM/yyyy"   tooltiptext="Fecha de inicio de la busqueda"/>
+                                        <datebox compact="true" 
+                                                 readonly="true"
+                                                 buttonVisible="true"
+                                                 value="@bind(vm.fin)" 
+                                                 style="font-weight:bold" 
+                                                 lenient="true"  
+                                                 class="textoFechaDateBox"
+                                                 format="dd/MM/yyyy"   
+                                                 tooltiptext="Fecha de fin de la busqueda"/>
+                                        <!--<div class="">-->  
+                                        <button   class="btn btn-primary btn-sm "
+                                                  image="/iconos/buscar1.png"  
+                                                  onClick="@command('betweenFechaRegistro')"  
+                                                  tooltiptext="Buscar cotizaciones por fecha  "/> 
+                                        <!--</div>-->
+                                    </div>
+                                     
+                                          
+                                </div>
+                            </div>          
+                            <listbox model="@load(vm.listaSeguimiento)" 
+                                     nonselectableTags="*"  mold="paging" pageSize="12"  >
+                                <custom-attributes org.zkoss.zul.listbox.rod="true"/>
+                                
+                    
+                                <listhead> 
+                                    <listheader width="10%"   >
+                                        <textbox value="@bind(vm.buscarCedula)" 
+                                                 width="98%"
+                                                 tooltiptext="Cedula"
+                                                 placeholder="Cedula"
+                                                 onOK="@command('buscarForCedula')"
+                                                 onChange="self.setValue(self.getValue().toUpperCase());" />
+                                    </listheader>     
+                                    <listheader width="25%"  >
+                                        <textbox value="@bind(vm.buscarRazon)" 
+                                                 width="98%"
+                                                 tooltiptext="Razon Social"
+                                                 placeholder="Razon Social"
+                                                 onOK="@command('likeCliRazon')"
+                                                 onChange="self.setValue(self.getValue().toUpperCase());" />
+                                    </listheader> 
+                                    <listheader width="15%"   >
+                                        <textbox value="@bind(vm.buscarNombre)" 
+                                                 width="98%"
+                                                 tooltiptext="Nombre Comercial"
+                                                 placeholder="Nombre Comercial"
+                                                 onOK="@command('likeCliNombreComercial')"
+                                                 onChange="self.setValue(self.getValue().toUpperCase());" />
+                                    </listheader>  
+          
+                                    <listheader width="10%"  label="FECHA REGISTRO "  /> 
+                                    <listheader width="10%"  label="PROXIMA VISITA"  />        
+                                    <listheader width="35%"  label="DESCRIPCION"/>
+                                    
+                                    <listheader hflex="min" class="letracabeceralist" label="MD" align="center"/>
+                                    <listheader hflex="min" class="letracabeceralist" label="DET" align="center"/>
+                            
+                                </listhead>  
+                    
+                                <template name="model">                                                            
+                                    <listitem>
+                                        <listcell style="font-size:11px;background-color:#F1876A;" zclass = "mycss-listcell"
+                                                  if="${each.colorEstado eq 'R' }" >
+                                            <textbox sclass="letraLisbox" readonly="true" class="form-control form-control-sm"
+                                                     style="font-size:11px;background-color:#F1876A; border:none; font-weight: bold"
+                                                     value="@bind(each.idCliente.idPersona.perDni)" width="100%" />
+                                        </listcell>
+                                        <listcell style="font-size:11px;background-color:#FAE74B;" zclass = "mycss-listcell"
+                                                  if="${each.colorEstado eq 'Y' }" >
+                                            <textbox sclass="letraLisbox" readonly="true" class="form-control form-control-sm"
+                                                     style="font-size:11px;background-color:#FAE74B; border:none; font-weight: bold"
+                                                     value="@bind(each.idCliente.idPersona.perDni)" width="100%" />
+                                        </listcell>
+                                        <listcell style="font-size:11px;background-color:#B2FFAA" zclass = "mycss-listcell" 
+                                                  if="${each.colorEstado eq 'G' }" >
+                                            <textbox sclass="letraLisbox" readonly="true" class="form-control form-control-sm"
+                                                     style="font-size:11px;background-color:#B2FFAA;border:none; font-weight: bold"
+                                                     value="@bind(each.idCliente.idPersona.perDni)" width="100%" />
+                                        </listcell>
+                                        <listcell style="font-size:11px;background-color:#d6eefd" zclass = "mycss-listcell">
+                                            <textbox class="form-control form-control-sm"
+                                                     style="font-size:11px;background-color:#d6eefd;"
+                                                     sclass="letraLisbox" readonly="true"
+                                                     value="@bind(each.idCliente.idPersona.perNombre)" width="100%" />
+                                        </listcell>
+                                        <listcell style="font-size:11px;background-color:#d6eefd" zclass = "mycss-listcell">
+                                            <textbox class="form-control form-control-sm"
+                                                     style="font-size:11px;background-color:#d6eefd;" 
+                                                     sclass="letraLisbox" readonly="true" 
+                                                     value="@bind(each.idCliente.cliNombreComercial)" width="100%" />
+                                        </listcell>
+                                        <listcell style="font-size:11px;background-color:#d6eefd" zclass = "mycss-listcell">
+                                            <datebox class="form-control form-control-sm"
+                                                     style="font-size:11px;background-color:#d6eefd"
+                                                     compact="true" 
+                                                     readonly="true"
+                                                     buttonVisible="false"                                                        
+                                                     format="medium"
+                                                     value="@bind(each.segFechaActividad)" width="100%" />
+                                        </listcell>
+                                        
+                                        <listcell style="font-size:11px;background-color:#d6eefd" zclass = "mycss-listcell">
+                                            <datebox class="form-control form-control-sm"
+                                                         style="font-size:11px;background-color:#d6eefd"
+                                                     compact="true" 
+                                                     readonly="true"
+                                                     buttonVisible="false"
+                                                     format="medium"
+                                                     value="@bind(each.segFechaProxima)" width="100%" />
+                                        </listcell>
+                                        <listcell style="font-size:11px;background-color:#d6eefd" zclass = "mycss-listcell">
+                                            <textbox class="form-control form-control-sm"
+                                                     style="font-size:11px;background-color:#d6eefd;" 
+                                                     sclass="letraLisbox" readonly="true"  
+                                                     value="@bind(each.segDescripcion)" width="100%" />
+                                        </listcell>
+                                        
+                                        <listcell style="font-size:11px;background-color:#d6eefd" zclass = "mycss-listcell">    
+                                            <button src="/iconos/pencil.png"
+                                                    class="btn-danger"
+                                                    onClick="@command('modificar',valor=each)" 
+                                                    tooltiptext="Modificar cliente"/>
+                                    
+                                        </listcell>
+                                        <listcell style="font-size:11px;background-color:#d6eefd" zclass = "mycss-listcell">    
+                                            <button src="/iconos/page_white_text.png"
+                                                    class="btn-primary"
+                                                    onClick="@command('detalleSeguimiento',valor=each)" 
+                                                    tooltiptext="Detalle de seguimiento"/>
+                                    
+                                        </listcell>
+                                    </listitem>
+                                </template>
+                            </listbox>  
+                            
+                        </tabpanel>
+                
+
+                           
+                    </tabpanels>
+            
+                </tabbox>
+
+
+
+               
+
+     
+            </div>
+        </div>
+    </div>
+   
+
+</zk>

@@ -1,0 +1,87 @@
+<?init class="com.ec.seguridad.Autentificador"?>
+<div apply="org.zkoss.bind.BindComposer" 
+     viewModel="@id('vm') @init('com.ec.controlador.AdministrarCliente')" width="100%" >
+    <listbox model="@load(vm.listaClientesAll)" 
+             nonselectableTags="*"  mold="paging" pageSize="12"  >
+        <custom-attributes org.zkoss.zul.listbox.rod="true"/>
+                    
+        <auxhead>
+            <auxheader colspan="8" >  
+                <image  src="/iconos/nuevo_pro-24.png"
+                        class="btn btn btn-secondary btn-sm "
+                        onClick="@command('nuevoCliente')"
+                        tooltiptext="Nuevo cliente"/>
+            </auxheader>
+        </auxhead>
+                    
+        <listhead> 
+            <listheader width="8%" label="Cédula" >
+            </listheader>     
+            <listheader width="15%" label="Razon Social" >
+            </listheader> 
+            <listheader width="15%"   >
+                <textbox value="@bind(vm.buscarNombre)" 
+                         class="form-control form-control-sm"
+                         tooltiptext="Nombre Comercial"
+                         placeholder="Nombre Comercial"
+                         onOK="@command('likeCliNombreComercial')"
+                         onChange="self.setValue(self.getValue().toUpperCase());" />
+            </listheader> 
+          
+            <listheader width="25%"  label="DIRECCION "  /> 
+            <listheader width="7%"  label="TELEFONO "  />        
+            <listheader width="10%"  label="MOVIL"/>
+            <listheader width="15%"  label="CORREO"/>
+            <listheader width="5%"  label="OPCIONES" align="center"/>
+                            
+        </listhead>  
+                    
+        <template name="model">                                                            
+            <listitem>
+                <listcell style="font-size:11px;background-color:#d6eefd" zclass = "mycss-listcell">
+                    <textbox class="form-control form-control-sm"
+                             style="font-size:11px;background-color:#d6eefd;" 
+                             sclass="letraLisbox" readonly="true"  value="@bind(each.idPersona.perDni)" width="100%" />
+                </listcell>
+                <listcell style="font-size:11px;background-color:#d6eefd" zclass = "mycss-listcell">
+                    <textbox class="form-control form-control-sm"
+                             style="font-size:11px;background-color:#d6eefd;" 
+                             sclass="letraLisbox" readonly="true" value="@bind(each.idPersona.perNombre)" width="100%" />
+                </listcell>
+                <listcell style="font-size:11px;background-color:#d6eefd" zclass = "mycss-listcell">
+                    <textbox class="form-control form-control-sm"
+                             style="font-size:11px;background-color:#d6eefd;" 
+                             sclass="letraLisbox" readonly="true"  value="@bind(each.cliNombreComercial)" width="100%" />
+                </listcell>
+                <listcell style="font-size:11px;background-color:#d6eefd" zclass = "mycss-listcell">
+                    <textbox class="form-control form-control-sm"
+                             style="font-size:11px;background-color:#d6eefd;" 
+                             sclass="letraLisbox" readonly="true" value="@bind(each.idPersona.prDireccion)" width="100%" />
+                </listcell>
+                                        
+                <listcell style="font-size:11px;background-color:#d6eefd" zclass = "mycss-listcell">
+                    <textbox class="form-control form-control-sm"
+                             style="font-size:11px;background-color:#d6eefd;" 
+                             sclass="letraLisbox" readonly="true" value="@bind(each.idPersona.perContacto)" width="100%" />
+                </listcell>
+                <listcell style="font-size:11px;background-color:#d6eefd" zclass = "mycss-listcell">
+                    <textbox class="form-control form-control-sm"
+                             style="font-size:11px;background-color:#d6eefd;" 
+                             sclass="letraLisbox" readonly="true"  value="@bind(each.idPersona.perMovil)" width="100%" />
+                </listcell>
+                <listcell style="font-size:11px;background-color:#d6eefd" zclass = "mycss-listcell">
+                    <textbox class="form-control form-control-sm"
+                             style="font-size:11px;background-color:#d6eefd;" 
+                             sclass="letraLisbox" readonly="true" value="@bind(each.idPersona.perCorreo)" width="100%" />
+                </listcell>
+                <listcell style="font-size:11px;background-color:#d6eefd" zclass = "mycss-listcell">   
+                    <image src="/iconos/editar.png"
+                           class="grow"
+                           onClick="@command('modificarCliente',valor=each)" 
+                           tooltiptext="Modificar cliente"/>
+                                    
+                </listcell>
+            </listitem>
+        </template>
+    </listbox>    
+</div>

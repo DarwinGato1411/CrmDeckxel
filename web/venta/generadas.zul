@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?link rel="stylesheet" type="text/css" href="/css/boostrap/bootstrap.css"?>  
+<?link rel="stylesheet" type="text/css" href="/css/style.css"?>
+<?init class="com.ec.seguridad.Autentificador"?>
+<?init class="org.zkoss.zk.ui.util.Composition" arg0="/plantilla/plantilla.zul"?>
+<zk  contentStyle="overflow:auto" with="100%" >
+    
+    <style>
+        .z-datebox-inp{
+        height:auto;
+        }
+    </style>
+
+    <hbox self="@define(content)" apply="org.zkoss.bind.BindComposer" 
+          viewModel="@id('vm') @init('com.ec.controlador.CotizacionGenerada')" width="100%">
+        <!--<timer id="timer" delay="60000" repeats="true" onTimer="@command('buscarListaOrdenesAll')" ></timer>-->
+        <tabbox id="tboxPrincipal"  width="100%">
+                       
+            <tabs >
+                <tab label="LISTA DE COTIZACIONES GENERADAS" sclass="iconostabs" /> 
+                
+            </tabs>
+            <tabpanels >
+                 
+                <tabpanel  height="98%" width="100%"  >
+                                
+                    <listbox   model="@load(vm.listaCotizacionGenerada)" 
+                               nonselectableTags="*"  mold="paging" pageSize="20"  >
+                        <custom-attributes org.zkoss.zul.listbox.rod="true"/>
+                    
+                        <auxhead>
+                            <auxheader colspan="11" >  
+                                <div class="row fondoCabeceraList " align="lefth">
+                                    <div class="col-3 col-sm-3 col-md-3 col-lg-3  ">
+                                        <div class="input-group mb-3">
+                                            <textbox id="txtClienteBuscar"   
+                                                     value="@bind(vm.busCliente)"
+                                                     onChange="self.setValue(self.getValue().toUpperCase());" 
+                                                     placeholder="Razon Social"
+                                                     class="form-control form-control-sm" 
+                                                     onOK="@command('buscarListaPorCliente')" />
+                               
+                                            <div class="input-group-append">
+                                                <button   image="/iconos/buscar1.png"  
+                                                          onClick="@command('buscarListaPorCliente')"  
+                                                          class="btn btn-primary btn-sm "
+                                                          tooltiptext="Buscar cotizaciones por Nombre Comercial"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                         
+                                
+                                    <div class="col-4 col-sm-4 col-md-4 col-lg-4  ">            
+                                        <div class="input-group mb-3">
+                                            <datebox compact="true" value="@bind(vm.fechaInicio)"  
+                                                     readonly="true"   style="font-weight:bold" 
+                                                     buttonVisible="true" lenient="true" 
+                                                     class="textoFechaDateBox"
+                                                     format="dd/MM/yyyy"   tooltiptext="Fecha de inicio de la busqueda"/>
+                                            <datebox compact="true" value="@bind(vm.fechaFin)" 
+                                                     readonly="true"   style="font-weight:bold" 
+                                                     buttonVisible="true" lenient="true"  
+                                                     class="textoFechaDateBox"
+                                                     format="dd/MM/yyyy"   
+                                                     tooltiptext="Fecha de fin de la busqueda"/>
+                                            <div class="input-group mb-3">  
+                                                <button   class="btn btn-primary btn-sm "
+                                                          image="/iconos/buscar1.png"  
+                                                          onClick="@command('buscarListaPorFechas')"  
+                                                          tooltiptext="Buscar cotizaciones por fecha de inicio "/> 
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-2 col-sm-2 col-md-2 col-lg-2  "> 
+                                        <button   class="btn btn-primary btn-sm " 
+                                                  image="/iconos/buscar1.png" 
+                                                  label="Nombre y Fechas"
+                                                  onClick="@command('buscarListaPorNombreFechas')" 
+                                                  tooltiptext="Buscar cotizaciones por varios parametros"/>                                                     
+                                    </div>
+                                </div>                 
+                              
+                                            
+                            </auxheader>
+                        </auxhead>
+                    
+                        <listhead> 
+                           
+                            <listheader width="7%"   sort="auto(cotNumero)"> 
+                                <decimalbox  value="@bind(vm.busNumero)" 
+                                             class="form-control form-control-sm"
+                                             tooltiptext="Ingrese el numero y presione Enter"
+                                             placeholder="0"
+                                             onOK="@command('buscarListaPorNumero')" /> 
+                            </listheader>   
+                            <listheader width="25%"   sort="auto(.cliIdCliente.cliNombreComercial)" >
+                                <textbox value="@bind(vm.nombreComercial)" 
+                                         class="form-control form-control-sm"
+                                         tooltiptext="Nombre Comercial"
+                                         placeholder="Nombre Comercial"
+                                         onOK="@command('buscarListaPorNombreComercial')"
+                                         onChange="self.setValue(self.getValue().toUpperCase());" />
+                            </listheader>
+                            <listheader width="10%"  label="FIJO" sort="auto(cliIdCliente.idPersona.perContacto)" /> 
+                            <listheader width="10%"  label="MOVIL" sort="auto(cliIdCliente.idPersona.perMovil)" /> 
+                            <listheader width="13%"  label="FECHA" sort="auto(cotFechaCotizacion)" /> 
+                            <listheader width="10%"  label="TOTAL"  /> 
+                            <listheader width="15%"  label="USUARIO"/>
+                            <listheader width="5%"  label="" align="center"/>
+                            <listheader width="5%"  label="" align="center"/>
+                            
+                        </listhead>  
+                    
+                        <template name="model">                                                            
+                            <listitem>
+                                <listcell style="font-size:11px;background-color:#d6eefd" zclass = "mycss-listcell">    
+                                    <textbox class="form-control form-control-sm"
+                                             style="font-size:11px;background-color:#d6eefd;" 
+                                             sclass="letraLisbox" readonly="true" 
+                                             value="@bind(each.cotNumero)" width="100%" />
+                                </listcell>
+                                <listcell style="font-size:11px;background-color:#d6eefd" zclass = "mycss-listcell">
+                                    <textbox class="form-control form-control-sm"
+                                             style="font-size:11px;background-color:#d6eefd;" 
+                                             sclass="letraLisbox" readonly="true"  value="@bind(each.cliIdCliente.cliNombreComercial)" 
+                                             width="100%" />
+                                </listcell>
+                                <listcell style="font-size:11px;background-color:#d6eefd" zclass = "mycss-listcell">
+                                    <textbox class="form-control form-control-sm"
+                                             style="font-size:11px;background-color:#d6eefd;" 
+                                             sclass="letraLisbox" readonly="true"  value="@bind(each.cliIdCliente.idPersona.perContacto)" 
+                                             width="100%" />
+                                </listcell>
+                                <listcell style="font-size:11px;background-color:#d6eefd" zclass = "mycss-listcell">
+                                    <textbox class="form-control form-control-sm"
+                                             style="font-size:11px;background-color:#d6eefd;" 
+                                             sclass="letraLisbox" readonly="true" value="@bind(each.cliIdCliente.idPersona.perMovil)" 
+                                             width="100%" />
+                                </listcell>
+                                <listcell style="font-size:11px;background-color:#d6eefd" zclass = "mycss-listcell">
+                                    <datebox class="form-control form-control-sm"
+                                             style="font-size:11px;background-color:#d6eefd;"
+                                             compact="true" readonly="true"  
+                                             value="@bind(each.cotFechaCotizacion)" 
+                                             buttonVisible="false" lenient="true" 
+                                             format="medium" width="98%"  
+                                    />
+                                               
+                                </listcell>
+                                <listcell style="font-size:11px;background-color:#d6eefd" zclass = "mycss-listcell">
+                                    <decimalbox class="form-control form-control-sm"
+                                                style="font-size:11px;background-color:#d6eefd;"
+                                                format="###.##" 
+                                                readonly="true" 
+                                                value="@bind(each.cotTotal)"
+                                                width="100%"/>
+                                               
+                                </listcell>
+                         
+                                <listcell style="font-size:11px;background-color:#d6eefd" zclass = "mycss-listcell">
+                                    <textbox class="form-control form-control-sm"
+                                             style="font-size:11px;background-color:#d6eefd;" 
+                                             sclass="letraLisbox" readonly="true" 
+                                             value="@bind(each.idUsuario.usuNombre)" width="100%"/>
+                                </listcell>
+                              
+                                <listcell style="font-size:11px;background-color:#d6eefd" zclass = "mycss-listcell">
+                                    <image src="/iconos/pdfrep2.png"   
+                                           class=" grow"
+                                           onClick="@command('reporteCotizacion',valor=each)" 
+                                           tooltiptext="Generar cotizacion"/>
+                                </listcell>
+                             
+                                <listcell style="font-size:11px;background-color:#d6eefd" zclass = "mycss-listcell">
+                                    <image   
+                                        src="/iconos/next.png"  
+                                        class="grow"
+                                        onClick="@command('cambioEstado',valor=each)" 
+                                        tooltiptext="Enviar a cotizacion enviada al cliente  "/>
+                                </listcell>
+                                
+                            </listitem>
+                        </template>
+                    </listbox>
+                
+                </tabpanel>
+                
+
+
+            </tabpanels>
+            
+        </tabbox>
+    </hbox>
+</zk>

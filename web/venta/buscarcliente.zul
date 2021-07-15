@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<window  id="windowClienteBuscar"  position="center" width="80%" closable="true"  
+         apply="org.zkoss.bind.BindComposer" contentStyle="overflow:auto"
+         viewModel="@id('vm') @init('com.ec.controlador.Cotizar')">
+    
+    <caption label="Seleccionar cliente" style="font-weight:bold"/> 
+   
+    <listbox model="@load(vm.listaClientesAll)" 
+             nonselectableTags="*"  mold="paging" pageSize="10"  >
+        <custom-attributes org.zkoss.zul.listbox.rod="true"/>
+                    
+      
+                    
+        <listhead> 
+            <listheader width="10%" label="DNI"   >
+               
+            </listheader>     
+            <listheader width="20%" label="Nombre" >
+                
+            </listheader> 
+            <listheader width="20%"  >
+                <textbox value="@bind(vm.buscarRazonSocial)"  
+                         class="form-control form-control-sm"
+                         tooltiptext="Razón Social"
+                         placeholder="Razón Social"
+                         onOK="@command('buscarClienteRazon')"
+                         onChange="self.setValue(self.getValue().toUpperCase());" />
+            </listheader> 
+            <listheader width="40%"  label="DIRECCION "  /> 
+         
+            <listheader width="10%"  label="OPCIONES" align="center"/>
+                            
+        </listhead>  
+                    
+        <template name="model">                                                            
+            <listitem>
+                 <listcell zclass = "mycss-listcell" onClick="@command('seleccionarClienteLista',cliente=each)">
+                    <textbox sclass="letraLisbox" readonly="true" value="@bind(each.idPersona.perDni)" width="100%" 
+                           onClick="@command('seleccionarClienteLista',cliente=each)" />
+                </listcell>
+                 <listcell zclass = "mycss-listcell" onClick="@command('seleccionarClienteLista',cliente=each)">
+                    <textbox sclass="letraLisbox" readonly="true" value="@bind(each.idPersona.perNombre)" width="100%" 
+                           onClick="@command('seleccionarClienteLista',cliente=each)" />
+                </listcell>
+                 <listcell zclass = "mycss-listcell" onClick="@command('seleccionarClienteLista',cliente=each)">
+                    <textbox sclass="letraLisbox" readonly="true" value="@bind(each.cliNombreComercial)" width="100%" 
+                           onClick="@command('seleccionarClienteLista',cliente=each)" />
+                </listcell>
+                 <listcell zclass = "mycss-listcell"  onClick="@command('seleccionarClienteLista',cliente=each)" >
+                    <textbox sclass="letraLisbox" readonly="true" value="@bind(each.idPersona.prDireccion)"
+                            onClick="@command('seleccionarClienteLista',cliente=each)"  width="100%"/>
+                </listcell>
+                
+                 <listcell zclass = "mycss-listcell">    
+                    <image  src="/iconos/ok24x24.png" 
+                            onClick="@command('seleccionarClienteLista',cliente=each)" 
+                            tooltiptext="Asigar cliente"/>
+
+                </listcell>
+            </listitem>
+        </template>
+    </listbox>
+                           
+                  
+</window>

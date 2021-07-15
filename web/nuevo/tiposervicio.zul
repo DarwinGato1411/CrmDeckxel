@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<window  id="windowTipoServicio"  position="center" width="400px" closable="true"  
+         apply="org.zkoss.bind.BindComposer" contentStyle="overflow:auto"
+         viewModel="@id('vm') @init('com.ec.controlador.NuevoTipoServicio')">
+    
+    <caption label="Cliente" style="font-weight:bold"/> 
+    
+    <div  class="container" >
+        <div  class="row" >
+            <div class="col-12 col-sm-12 col-md-12 col-lg-12  form-group "  >
+                <label   style="color:red;font-weight:bold" value="(*) "  />Tipo de servicio:
+                <textbox    onChange="self.setValue(self.getValue().toUpperCase())"
+                            value="@bind(vm.tipoServicio.tipsDescripcion)" 
+                            class="form-control" />
+            </div>
+              
+                             
+            <div class="col-12 col-sm-12 col-md-12 col-lg-12  form-group" align="center" >
+                    
+                <image src="/iconos/save48.png"  
+                       onClick="@command('guardar')"
+                       tooltiptext="Guardar Registro"/>
+ 
+
+            </div> 
+        </div>
+    </div>
+                  
+</window>

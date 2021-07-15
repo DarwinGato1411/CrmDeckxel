@@ -1,0 +1,64 @@
+<?init class="com.ec.seguridad.Autentificador"?>
+<?link rel="stylesheet" type="text/css" href="/css/boostrap/bootstrap.css"?>  
+<?link rel="stylesheet" type="text/css" href="/css/style.css"?>
+<zk >
+    
+    <!--<style>
+       .z-menupopup-cnt .z-menu a.z-menu-cnt, .z-menupopup-cnt .z-menuitem a.z-menuitem-cnt {
+    color: #f5f3f3;
+    display: block;
+    line-height: 17px;
+    outline-color: -moz-use-text-color;
+    outline-style: none;
+    outline-width: 0;
+    padding: 2px 21px 2px 3px;
+    white-space: nowrap;
+}
+.z-menupopup a {
+    text-decoration: none!important;
+}
+.z-menu-cnt, .z-menuitem-cnt {
+    text-decoration: none;
+}
+.z-menubar-hor .z-menu, .z-menubar-hor .z-menuitem, .z-menubar-hor .z-menu-btn, .z-menubar-hor .z-menuitem-btn, .z-menubar-hor span, .z-menubar-hor a, .z-menubar-hor div, .z-menubar-ver .z-menu, .z-menubar-ver .z-menuitem, .z-menubar-ver .z-menu-btn, .z-menubar-ver .z-menuitem-btn, .z-menubar-ver span, .z-menubar-ver a, .z-menubar-ver div, .z-menu-cnt, .z-menuitem-cnt {
+    font-weight: normal;
+    white-space: nowrap;
+    font-family: arial, sans-serif;
+    font-size: 12px;
+    color: #f1eded;
+}
+    </style>-->
+   <!-- <div class="btn-group-vertical  sidebar-nav"  style="text-align:lefth;"
+         viewModel="@id('vm')"     apply="com.ec.controlador.MenuOpciones" >
+      
+                <button id="btnDominio" label="R. Dominio"   tooltiptext="Renovacion de dominios"
+                class="btn btn-info form-control-sm letrasMenuOpcionesBoost"  />        
+           
+        <button id="btnSeguimiento" label="Seguimiento"  
+                class="btn btn-info form-control-sm letrasMenuOpcionesBoost" />        
+          
+        <button popup="menubar, after_start" label="Cotizacion"  dir="reverse" 
+                class="btn btn-info form-control-sm letrasMenuOpcionesBoost dropdown-toggle"/>        
+           
+     	<menupopup id="menubar"   >
+                <menuitem label="Generar Cotizar" id="btnCotizacion" class="btn btn-info form-control-sm letrasMenuOpcionesBoost"     image="/menu/page.png" />
+                <menuitem label="Cotizaciones Generadas" class="btn btn-info form-control-sm letrasMenuOpcionesBoost" id="btnCotizacionGenerada" image="/menu/flag_orange.png" />
+                <menuitem label="Cotizaciones Enviadas" class="btn btn-info form-control-sm letrasMenuOpcionesBoost" id="btnCotizacionEnviada" image="/menu/flag_blue.png" />
+                <menuitem label="Cotizaciones Aprobadas"  class="btn btn-info form-control-sm letrasMenuOpcionesBoost" id="btnCotizacionAprobada" image="/menu/flag_green.png" />
+                <menuitem label="Cotizaciones Finalizadas" class="btn btn-info form-control-sm letrasMenuOpcionesBoost"  id="btnCotizacionFinalizada" image="/menu/flag_red.png" />
+                <menuitem label="Cotizaciones Facturadas" class="btn btn-info form-control-sm letrasMenuOpcionesBoost"  id="btnCotizacionFacturada" image="/menu/flag_purple.png" />
+               
+            </menupopup>
+            
+              <button id="btnProyecto" label="Proyecto"  
+                class="btn btn-info form-control-sm letrasMenuOpcionesBoost" /> 
+                 
+        <button id="btnInformes" label="Informes"  
+        class="btn btn-info form-control-sm letrasMenuOpcionesBoost" />
+                 
+        <button id="btnAdministrar" label="Administrar"  
+                        class="btn btn-info form-control-sm letrasMenuOpcionesBoost" />  
+ 
+    </div>-->
+                
+</zk>

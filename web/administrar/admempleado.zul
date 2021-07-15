@@ -1,0 +1,105 @@
+<?init class="com.ec.seguridad.Autentificador"?>
+<div apply="org.zkoss.bind.BindComposer" 
+     viewModel="@id('vm') @init('com.ec.controlador.AdministrarEmpleado')" width="100%" >
+    <listbox model="@load(vm.listaEmpleado)" 
+             nonselectableTags="*"  mold="paging" pageSize="12"  >
+        <custom-attributes org.zkoss.zul.listbox.rod="true"/>
+                    
+        <auxhead>
+            <auxheader colspan="8" >  
+                <image  src="/iconos/nuevo_pro-24.png"
+                        class="btn btn btn-secondary btn-sm "
+                        onClick="@command('nuevoEmpleado')"
+                        tooltiptext="Nuevo empleado"/>
+            </auxheader>
+        </auxhead>
+                    
+        <listhead> 
+            <listheader width="8%" label="Cedula" >
+            </listheader>     
+            <listheader width="15%"  >
+                <textbox value="@bind(vm.buscarNombre)" 
+                         class="form-control form-control-sm"
+                         tooltiptext="Nombre"
+                         placeholder="Nombre"
+                         onOK="@command('LikePerNombre')"
+                         onChange="self.setValue(self.getValue().toUpperCase());" />
+            </listheader> 
+            <listheader width="10%" label="CARGO"  >
+                
+            </listheader> 
+          
+            <listheader width="20%"  label="DIRECCION "  /> 
+            <listheader width="10%"  label="TELEFONO "  />        
+            <listheader width="10%"  label="MOVIL"/>
+            <listheader width="15%"  label="CORREO"/>
+            <listheader width="7%"  label="SUELDO"/>
+            <listheader width="5%"  label="OPCIONES" align="center"/>
+                            
+        </listhead>  
+                    
+        <template name="model">                                                            
+            <listitem>
+                <listcell style="font-size:11px;background-color:#d6eefd" zclass = "mycss-listcell">
+                    <textbox class="form-control form-control-sm"
+                             style="font-size:11px;background-color:#d6eefd;" 
+                             sclass="letraLisbox" readonly="true" 
+                             value="@bind(each.idPersona.perDni)" width="100%" />
+                </listcell>
+                <listcell style="font-size:11px;background-color:#d6eefd" zclass = "mycss-listcell">
+                    <textbox class="form-control form-control-sm"
+                             style="font-size:11px;background-color:#d6eefd;" 
+                             sclass="letraLisbox" readonly="true" 
+                             value="@bind(each.idPersona.perNombre)" width="100%" />
+                </listcell>
+                <listcell style="font-size:11px;background-color:#d6eefd" zclass = "mycss-listcell">
+                    <textbox class="form-control form-control-sm"
+                             style="font-size:11px;background-color:#d6eefd;" 
+                             sclass="letraLisbox" readonly="true" 
+                             value="@bind(each.empCargo)" width="100%" />
+                </listcell>
+                <listcell style="font-size:11px;background-color:#d6eefd" zclass = "mycss-listcell">
+                    <textbox class="form-control form-control-sm"
+                             style="font-size:11px;background-color:#d6eefd;" 
+                             sclass="letraLisbox" readonly="true" 
+                             value="@bind(each.idPersona.prDireccion)" width="100%" />
+                </listcell>
+                                        
+                <listcell style="font-size:11px;background-color:#d6eefd" zclass = "mycss-listcell">
+                    <textbox class="form-control form-control-sm"
+                             style="font-size:11px;background-color:#d6eefd;" 
+                             sclass="letraLisbox" readonly="true" 
+                             value="@bind(each.idPersona.perContacto)" width="100%" />
+                </listcell>
+                <listcell style="font-size:11px;background-color:#d6eefd" zclass = "mycss-listcell">
+                    <textbox class="form-control form-control-sm"
+                             style="font-size:11px;background-color:#d6eefd;" 
+                             sclass="letraLisbox" readonly="true"  value="@bind(each.idPersona.perMovil)" width="100%" />
+                </listcell>
+                <listcell style="font-size:11px;background-color:#d6eefd" zclass = "mycss-listcell">
+                    <textbox class="form-control form-control-sm"
+                             style="font-size:11px;background-color:#d6eefd;" 
+                             sclass="letraLisbox" readonly="true" 
+                             value="@bind(each.idPersona.perCorreo)" width="100%" />
+                </listcell>
+                <!--                 <listcell zclass = "mycss-listcell">
+                    <textbox sclass="letraLisbox" readonly="true" value="@bind(each.empSueldo)" width="100%" />
+                </listcell>-->
+                <listcell style="font-size:11px;background-color:#d6eefd" zclass = "mycss-listcell">
+                    <decimalbox class="form-control form-control-sm"
+                                style="font-size:11px;background-color:#d6eefd;" 
+                                sclass="letraLisbox" 
+                                format="###.#####" readonly="true" 
+                                value="@bind(each.empSueldo)" width="100%" />
+                </listcell>
+                <listcell style="font-size:11px;background-color:#d6eefd" zclass = "mycss-listcell">    
+                    <image src="/iconos/editar.png"
+                           class="grow"
+                           onClick="@command('modificarEmpleado',valor=each)" 
+                           tooltiptext="Modificar empleado"/>
+                                    
+                </listcell>
+            </listitem>
+        </template>
+    </listbox>    
+</div>

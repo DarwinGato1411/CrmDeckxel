@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<window  id="windowEmpleadoDOs"  position="center" width="600px" closable="true"  
+         apply="org.zkoss.bind.BindComposer" contentStyle="overflow:auto"
+         viewModel="@id('vm') @init('com.ec.controlador.NuevoEmpleado')">
+    
+    <caption label="Cliente" style="font-weight:bold"/> 
+    
+    <div  class="container" >
+        <div  class="row" >
+            <div class="col-12 col-sm-12 col-md-4 col-lg-4  form-group "  >
+                <label   style="color:red;font-weight:bold" value="(*) "  />CI/Ruc
+                <textbox  maxlength="13"   id="txtRuc" 
+                          value="@bind(vm.idPersona.perDni)" 
+                          class="form-control" />
+            </div>          
+            <div class="col-12 col-sm-12 col-md-4 col-lg-4  form-group "  >
+                <label value="(*) " style="color:red;font-weight:bold"/>Nombres:
+                
+                <textbox  maxlength="100" 
+                          onChange="self.setValue(self.getValue().toUpperCase())"
+                          value="@bind(vm.idPersona.perNombre)" 
+                          class="form-control" />
+            </div>
+            <div class="col-12 col-sm-12 col-md-4 col-lg-4  form-group "  >
+                <label value="(*) " style="color:red;font-weight:bold"/>Apellidos:
+                
+                <textbox  maxlength="100" 
+                          onChange="self.setValue(self.getValue().toUpperCase())"
+                          value="@bind(vm.idPersona.perApellido)" 
+                          class="form-control" />
+            </div>
+            <div class="col-12 col-sm-12 col-md-4 col-lg-4  form-group "  >
+                <label value="(*) " style="color:red;font-weight:bold"/>Telefono Convencional:
+                
+                <textbox  maxlength="20"
+                          value="@bind(vm.idPersona.perContacto)" 
+                          
+                          class="form-control" />
+            </div>
+            
+            <div class="col-12 col-sm-12 col-md-4 col-lg-4  form-group "  >
+                <label value="(*)" style="color:transparent;font-weight:bold"/>Movil:
+              
+                <textbox  maxlength="20"  
+                          value="@bind(vm.idPersona.perMovil)"
+                          class="form-control" />
+            </div>
+            <div class="col-12 col-sm-12 col-md-6 col-lg-6  form-group "  >
+                <label value="(*) " style="color:red;font-weight:bold"/>Sueldo:
+                <decimalbox format="###.#####" readonly="false" 
+                            class="form-control"
+                            value="@bind(vm.empleado.empSueldo)" width="96%" />                
+            </div>
+            <div class="col-12 col-sm-12 col-md-6 col-lg-6  form-group "  >
+                <label value="(*) " style="color:red;font-weight:bold"/>Correo: 
+                
+                <textbox  maxlength="150" 
+                          value="@bind(vm.idPersona.perCorreo)"                          
+                          class="form-control" />
+            </div>
+            <div class="col-12 col-sm-12 col-md-6 col-lg-6  form-group "  >
+                <label value="(*) " style="color:red;font-weight:bold"/>Cargo: 
+                
+                <textbox  maxlength="50" 
+                          onChange="self.setValue(self.getValue().toUpperCase());" 
+                          value="@bind(vm.empleado.empCargo)"                          
+                          class="form-control" />
+            </div>
+         
+            
+            <div class="col-12 col-sm-12 col-md-6 col-lg-6  form-group "  >
+                <label value="(*)" style="color:transparent;font-weight:bold"/>Direccion:
+                <textbox  maxlength="150"  
+                          value="@bind(vm.idPersona.prDireccion)" 
+                          onChange="self.setValue(self.getValue().toUpperCase());" 
+                          class="form-control" />              
+            </div> 
+       
+        </div>
+                             
+        <div class="col-12 col-sm-12 col-md-12 col-lg-12  form-group" align="center" >
+                    
+            <image src="/iconos/save48.png"  
+                   onClick="@command('guardar')"
+                   tooltiptext="Guardar Registro"/>
+ 
+
+        </div> 
+    </div>
+                  
+</window>

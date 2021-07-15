@@ -1,0 +1,148 @@
+   <zk>
+
+      
+    <div class="banner" id="loginWin"  style="height:auto"  width="100%"
+         apply="com.ec.controlador.LogoutController" >
+        <div class="row" >
+            <div class="col-6 col-sm-6 col-md-6 col-lg-6  " align="start">
+                <label value="CRM - DEKCXEL" sclass="banner-head labelNuevo" />        
+            </div>
+            <div class="col-6 col-sm-6 col-md-6 col-lg-6  " align="end" style="float: right; " >
+    
+                <label value="Usuario: " if="${not sessionScope.userCredential.anonymous}" class="labelNuevo" />
+                <label value="${sessionScope.usuario.nombreUsuario}" class="labelNuevo" if="${not sessionScope.userCredential.anonymous}" />
+                <div  class="col-2 col-sm-2 col-md-2 col-lg-2 grow " align="end" style="float: right; " >
+                    <a sclass="logout labelLogout" id="logout" >  
+                        <label  value="Salir " if="${not sessionScope.userCredential.anonymous}" sclass=" labelLogout"/> 
+                        <image src="/iconos/logout-24.png"  />  
+                       
+                    </a>
+                
+                </div>
+            </div>
+        
+        </div>        
+    </div>
+    
+    <div class="rows">
+            <div  viewModel="@id('vm')" id="gridMenu" apply="com.ec.controlador.MenuOpciones" 
+            class="col-12 col-sm-12 col-md-12 col-lg-12" >
+         
+                <menubar id="menubar" orient="horizontal"  autodrop="true" >
+                    <menuitem id="btnDominio" label="R. Dominio" class="btn  form-control-sm pestañas"/>
+                           
+                    <menuitem id="btnSeguimiento" label="Seguimiento" class="btn  form-control-sm pestañas"/>
+                           
+                    <menu label="Cotización" class="btn  form-control-sm pestañas">
+                        <menupopup>                     
+                      
+                            <menuitem label="Generar Cotizar" id="btnCotizacion" class="btn btn-info form-control-sm letrasMenuOpcionesBoost"     image="/menu/page.png" />
+                            <menuitem label="Cotizaciones Generadas" class="btn btn-info form-control-sm banner" id="btnCotizacionGenerada" image="/menu/flag_orange.png" />
+                            <menuitem label="Cotizaciones Enviadas" class="btn btn-info form-control-sm banner" id="btnCotizacionEnviada" image="/menu/flag_blue.png" />
+                            <menuitem label="Cotizaciones Aprobadas"  class="btn btn-info form-control-sm banner" id="btnCotizacionAprobada" image="/menu/flag_green.png" />
+                            <menuitem label="Cotizaciones Finalizadas" class="btn btn-info form-control-sm banner"  id="btnCotizacionFinalizada" image="/menu/flag_red.png" />
+                            <menuitem label="Cotizaciones Facturadas" class="btn btn-info form-control-sm banner"  id="btnCotizacionFacturada" image="/menu/flag_purple.png" />
+                        </menupopup>
+                    </menu>          
+                                                             
+                    <menuitem id="btnAdministrar" label="Administrar" class="btn  form-control-sm pestañas letrasMenuOpcionesBoost" />
+                    <!--                        <menuitem image="/iconos/fact.png" label="Facturar" onClick="@command('facturar')" />
+                    <menuitem image="/iconos/page.png" label="Producto" onClick="@command('nuevoProducto')" />
+                    <menuitem image="/iconos/user.png" label="Cliente" onClick="@command('nuevoCliente')" />-->
+                      
+                </menubar>    
+                                    
+                </div>
+                
+        </div>
+</zk>
+<!--<div hflex="1" vflex="1" sclass="banner">
+    <hbox hflex="1" vflex="1" align="center" >
+        <div width="100%">
+            <label value="Sistema de cotizacion" sclass="banner-head" />
+        </div>
+        <hbox apply="imp.controladoresviewesview.LogoutController" width="100%"
+                  hflex="1" vflex="1" pack="end" align="end" >
+           
+        </hbox>       
+    </hbox>
+</div>-->
+<!--
+<div hflex="1" vflex="1" class="table" sclass="banner" apply="imp.controladoresviewesview.LogoutController" >
+    
+    <nav sclass="navbar navbar-default">
+    <menubar  width="100%" apply="imp.controladoresviewesview.MenuOpcionesViewModel" autodrop="true" >
+        <menuitem id="btnPrincipal" label="INICIO"   />
+        <menuitem id="btnAdministrar" label="CATALOGOS"  />
+      
+        <menu label="ORDEN CON COTIZACION" visible="true"    >
+            <menupopup>
+                <menu  label="COTIZACIONES" >
+                    <menupopup>
+                        <menuitem id="btnCotizar" label="GENERAL" />
+                        <menuitem  id="btnCompaginado" label="COMPAGINADO" />
+                        <menuitem  id="btnGiganto" label="GIGANTOGRAFIA" />
+                        <menuitem  id="btnDigital" label="DIGITAL" />
+                    </menupopup>
+                </menu>
+                <menu  label="LISTA DE COTIZACIONES" >
+                    <menupopup>
+                        <menuitem  id="btnListaUsuarios" label="GENERADAS" />
+                        <menuitem  id="btnCotizacionCerrada" label="CERRADA" />
+                        <menuitem id="btnCotizacionFacturadas" label="FACTURADAS" />
+                        <menuitem image="/imagenes/group.png" id="btnDigital" label="DIGITAL" />
+                    </menupopup>
+                </menu>
+                <menu  label="ORDEN DE PRODUCCION" >
+                    <menupopup>
+                        <menuitem  id="btnOrdenFinalizada" label="CERRADA" />
+                    </menupopup>
+                </menu>
+
+            </menupopup>
+        </menu>
+        <menu label="ORDEN SIN COTIZACION" visible="true"    >
+            <menupopup>
+             
+                <menuitem  id="btnOrdenSinCotizar" label="GENERAR ORDEN" >
+                </menuitem>
+                <menu  label="LISTA DE ORDEN DE PRODUCCION" >
+                    <menupopup>
+                        <menuitem  id="btnOrdenSinCotizar" label="ORDEN SIN COTIZACION" />
+                        <menuitem  id="btnListaOrdenSinCotizar" label="GENERADAS" />
+                        <menuitem  id="btnListaOrdenSinCotizarCerradas" label="CERRADAS" />
+                        <menuitem  id="btnListaOrdenSinCotizarFacturadas" label="FACTURADAS" />
+                    </menupopup>
+                </menu>
+
+            </menupopup>
+        </menu>
+        <menu label="ADMINISTRACION" visible="true"    >
+            <menupopup>
+             
+                <menuitem  id="btnMaterialSolicitado" label="SOLICITAR MATERIAL" >
+                </menuitem>
+                
+              
+                <menuitem  id="btnMailMasivo" label="PUBLICIDAD MASIVA" >
+                </menuitem>
+                <menuitem  id="btnManual" label="MANUAL USUARIO" >
+                </menuitem>
+                  <menuitem  id="btnUsuarios" label="USUARIOS" >
+                </menuitem>
+               
+                
+
+            </menupopup>
+        </menu>
+         <menuitem  id="btnCalculadora" label="CALCULADORA" >
+                </menuitem>
+       <menuitem  label="Usuario: ${sessionScope.usuario.nombreUsuario}" 
+                       style=" float:rigth;position:absolute;right:10%;" 
+                       if="${not sessionScope.userCredential.anonymous}" sclass="info"  />
+        <menuitem id="logout" label="Salir"  style=" float:rigth;position:absolute;right:1%;" 
+                      image="/imagenes/cancel.png" />
+                  
+    </menubar>    
+    </nav>
+</div>-->

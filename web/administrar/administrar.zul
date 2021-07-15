@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?link rel="stylesheet" type="text/css" href="/css/boostrap/bootstrap.css"?>  
+<?link rel="stylesheet" type="text/css" href="/css/style.css"?>
+<?init class="com.ec.seguridad.Autentificador"?>
+<?init class="org.zkoss.zk.ui.util.Composition" arg0="/plantilla/plantilla.zul"?>
+<zk  >
+    <div class="container" self="@define(content)" apply="org.zkoss.bind.BindComposer" 
+         viewModel="@id('vm') @init('com.ec.controlador.Administrar')" >
+        <div class="row">
+            <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+               
+                
+                <tabbox   class="col-12 col-sm-12 col-md-12 col-lg-12">
+                    <tabs >
+                                
+                        <tab label="Cliente" sclass="menutabs" /> 
+                        <tab label="Empleado" sclass="menutabs" />
+                        <tab label="Producto" sclass="menutabs" /> 
+                        <tab label="Usuario" sclass="menutabs" />  
+                        <tab label="Tipo de servicio" sclass="menutabs" /> 
+                                
+                    </tabs>
+                    <tabpanels >
+                
+                        <tabpanel  height="98%" width="99%"  >                    
+                
+                            <include src="/administrar/admcliente.zul"/>  
+                
+                        </tabpanel>
+                        <tabpanel  height="98%" width="99%"  >                    
+                
+                            <include src="/administrar/admempleado.zul"/>  
+                
+                        </tabpanel>
+                        <tabpanel  height="98%" width="99%"  >                    
+                
+                            <include src="/administrar/admproducto.zul"/>  
+                
+                        </tabpanel>
+                            
+                        <tabpanel height="auto" hflex="min">
+                            <listbox width="auto" model="@load(vm.listaUsuarios)" nonselectableTags="*"  mold="paging" pageSize="9">
+                                <auxhead>
+                                    <auxheader colspan="9" >  
+                                        <div class="container-fluid">
+                                            <div class="row">
+                                                <div class="col-12 col-sm-12 col-md-1 col-lg-1 form-group " align="start"  >
+                                                    <image  src="/iconos/nuevo_pro-24.png"
+                                                            class="btn btn btn-secondary btn-sm "
+                                                            onClick="@command('agregarUsario')"
+                                                            tooltiptext="Nuevo usuario"/>
+                    
+                                                </div>
+                        
+                                            </div>
+                                        </div> 
+                               
+                                    </auxheader>
+                                </auxhead>
+                        
+                                    
+                             
+                                <listhead sizable="true">
+                                    <listheader label="Nombre de usuario"  align="left" width="35%"></listheader>
+                                    <listheader label="Usuario"  align="left" width="20%"></listheader>
+                                    <listheader label="Contraseña"  align="left" width="20%"></listheader>
+                                    <listheader label="Tipo Usuario"  align="left" width="20%"></listheader>
+                                    <listheader label="Modificar"  align="left" width="5%"></listheader>
+                                </listhead>
+                   
+                
+                                <template name="model">
+                                    <listitem width="100%" > 
+                                        <listcell style="font-size:11px;background-color:#d6eefd" zclass = "mycss-listcell">
+                                            <textbox class="form-control form-control-sm"
+                                                     style="font-size:11px;background-color:#d6eefd;" 
+                                                     sclass="letraLisbox" readonly="true"   value="@bind(each.usuNombre)"  width="100%"/>
+                                        </listcell>  
+                                        <listcell style="font-size:11px;background-color:#d6eefd" zclass = "mycss-listcell">
+                                            <textbox class="form-control form-control-sm"
+                                                     style="font-size:11px;background-color:#d6eefd;" 
+                                                     sclass="letraLisbox" readonly="true"   value="@bind(each.usuLogin)"  width="100%"/>
+                                        </listcell>   
+                                        <listcell style="font-size:11px;background-color:#d6eefd" zclass = "mycss-listcell">      
+                                            <textbox value="@bind(each.usuPassword)"
+                                                     class="form-control form-control-sm"
+                                                     style="font-size:11px;background-color:#d6eefd; "  
+                                                     readonly="true" type="password" />
+                                        </listcell>  
+                                        <listcell style="font-size:11px;background-color:#d6eefd" zclass = "mycss-listcell">                          
+                                            <textbox class="form-control form-control-sm"
+                                                     style="font-size:11px;background-color:#d6eefd;" 
+                                                     sclass="letraLisbox" readonly="true" value="@bind(each.usuTipoUsuario)" width="100%" />
+                                        </listcell>                  
+                                        <listcell style="font-size:11px;background-color:#d6eefd" zclass = "mycss-listcell">
+                                            <image src="/iconos/editar.png"
+                                                   class="grow"
+                                                   onClick="@command('modificarUsario',valor=each)" 
+                                                   tooltiptext="Editar usuario"/> 
+                                    
+                                        </listcell>     
+                               
+                                    </listitem>
+                                </template>   
+                       
+                            </listbox>
+                        </tabpanel>
+                
+
+                        <tabpanel  height="98%" width="99%"  >                    
+                
+                            <include src="/administrar/tiposervicio.zul"/>  
+                
+                        </tabpanel>
+                    </tabpanels>
+            
+                </tabbox>
+
+
+
+               
+
+     
+            </div>
+        </div>
+    </div>
+   
+
+</zk>

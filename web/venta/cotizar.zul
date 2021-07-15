@@ -1,0 +1,460 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?link rel="stylesheet" type="text/css" href="/css/boostrap/bootstrap.css"?>  
+<?link rel="stylesheet" type="text/css" href="/css/style.css"?>
+<?init class="com.ec.seguridad.Autentificador"?>
+<?init class="org.zkoss.zk.ui.util.Composition" arg0="/plantilla/plantilla.zul"?>
+<zk  contentStyle="overflow:auto" with="100%" class="container" >
+    <hbox self="@define(content)" apply="org.zkoss.bind.BindComposer" 
+          viewModel="@id('vm') @init('com.ec.controlador.Cotizar')" width="100%">
+        <tabbox  width="100%"  tabscroll="true" >
+            <tabs >
+                <tab label="COTIZACION" sclass="menutabs"/>
+            </tabs>
+            <tabpanels >
+                <tabpanel  height="100%" width="98%"  >
+                    <div class="container-fluid">
+                        
+                        <div class="row" style="margin-top:5px">
+                            <div class="  col-12 col-sm-12 col-md-12 col-lg-12">
+                                <toolbar  id="tb1" height="120px"  align="end" style="background-color:#d6eefd;" >
+                                    <div class="row  col-12 col-sm-12 col-md-12 col-lg-12">
+                            <div class="col-2 col-sm-2 col-md-2 col-lg-2">
+                                <div class="input-group mb-3">
+                                    
+                                    <textbox   class="form-control form-control-sm" 
+                                               placeholder="Cedula"
+                                               value="@bind(vm.clienteBuscado.idPersona.perDni)" 
+                                               onDoubleClick="@command('buscarClienteEnLista')"
+                                               style="font-weight:bold"
+                                               maxlength="13"  />
+                        
+                                    <div class="input-group-append">
+                                        <button   image="/iconos/buscar1.png" 
+                                                  onClick="@command('buscarClienteEnLista')"  
+                                                  tooltiptext="Buscar cliente"
+                                                  class="btn   btn-sm btnbuscar"/>
+                               
+                               
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-2 col-sm-2 col-md-2 col-lg-2">
+                                <div class="input-group mb-3" style="font-weight:bold;font-size:0.8em">
+                                    <textbox  readonly="true" 
+                                              style="text-align:center;font-size:17px;"
+                                              placeholder="Nombre comercial"
+                                              class="form-control form-control-sm" 
+                                              value="@bind(vm.clienteBuscado.cliNombreComercial)"  />
+                                </div>
+                            </div>
+                            <div class="col-3 col-sm-3 col-md-4 col-lg-4">
+                                <div class="input-group mb-3" style="font-weight:bold;font-size:0.8em">
+                                    <textbox  readonly="true" 
+                                              style="text-align:center;font-size:17px;"
+                                              placeholder="Dirección"
+                                              value="@bind(vm.clienteBuscado.idPersona.prDireccion)" 
+                                              class="form-control form-control-sm"   />
+                                </div>
+                            </div>
+                            <div class="col-2 col-sm-2 col-md-2 col-lg-2">
+                                <div class="input-group mb-3" style="font-weight:bold;font-size:0.8em">
+                                    <textbox  readonly="true" 
+                                              style="text-align:center;font-size:17px;" 
+                                              placeholder="Telefono"
+                                              value="@bind(vm.clienteBuscado.idPersona.perMovil)"
+                                              class="form-control form-control-sm" 
+                                    />
+                                </div>
+                            </div>
+                            
+                            <div class="col-2 col-sm-2 col-md-2 col-lg-2" align="end" >
+                                 
+                                <datebox compact="true" value="@bind(vm.fechafacturacion)" 
+                                         readonly="true" style="font-weight:bold;" 
+                                         class="form-control form-control-sm textoFechaDateBox"  
+                                         buttonVisible="true" 
+                                         lenient="true" format="dd/MM/yyyy" 
+                                         constraint="no empty: Ingrese su fecha de la orden"/>
+
+                            </div>
+                            <div class="col-8 col-sm-8 col-md-2 col-lg-2 form-group " align="center"  >
+                                            <label value="SUB-TOTAL" style="font-weight:bold;font-size:0.8em"/>
+      
+                                            <decimalbox  format="###.##"   
+                                                         width="99%"
+                                                         value="@bind(vm.subTotalCotizacion)"                                             
+                                                         readonly="true" 
+                                                         style="text-align:center;font-size:17px;background-color:#90FFBF;"
+                                                         onChange="self.setValue(self.getValue().toUpperCase().trim());"  />
+                                        </div>
+                                        <div class="col-8 col-sm-8 col-md-2 col-lg-2  form-group " align="center"  >
+                                            <label value="IVA" style="font-weight:bold;font-size:0.8em"/>
+                
+                                            <decimalbox  value="@bind(vm.ivaCotizacion)"
+                                                         format="###.####" 
+                                                         readonly="true" 
+                                                         onChange="self.setValue(self.getValue().toUpperCase().trim());"
+                                                         style="text-align:center;font-size:17px;background-color:#90DCFF;" 
+                                                         class="form-control form-control-sm" />
+                                        </div>
+                                        <div class="col-8 col-sm-8 col-md-2 col-lg-2  form-group " align="center"  >
+                                            <label value="TOTAL" style="font-weight:bold;font-size:0.8em"/>
+                
+                                            <decimalbox  value="@bind(vm.valorTotalCotizacion)"
+                                                         format="###.##" 
+                                                         readonly="true" 
+                                                         onChange="self.setValue(self.getValue().toUpperCase().trim());" 
+                                                         style="text-align:center;font-size:17px;background-color:red; color:white" 
+                                                         class="form-control form-control-sm" />
+                                        </div>
+                            
+                            
+                                        <div class="col-8 col-sm-8 col-md-2 col-lg-2  form-group " align="center"  >
+                                
+                                            <label value="COBRAR:" style="font-weight:bold;font-size:0.8em" />                            
+                                  
+                                            <decimalbox format="###.##" 
+                                                        onOK="@command('calcularCambio')"
+                                                        class="form-control form-control-sm"
+                                                        value="@bind(vm.cobro)"
+                                                        style="text-align:center;font-size:17px;color:green" />
+                                        </div>
+                                        <div class="col-4 col-sm-4 col-md-2 col-lg-2 form-group" align="center">
+                                
+                                            <label value="CAMBIO:" style="font-weight:bold;font-size:0.8em" />                            
+                                            <decimalbox format="###.##"  
+                                                        readonly="true" 
+                                                        class="form-control form-control-sm"
+                                                        value="@bind(vm.cambio)" 
+                                                        style="text-align:center;font-size:17px;color:blue"/>
+                                        </div>
+                                        <div class="col-12 col-sm-12 col-md-1 col-lg-1" style="color:black;">
+                                            <label value="GUARDAR" style="color:#d6eefd;"/>
+                                            <label value="GUARDAR" style="font-size:15px; font-weight:bold" />
+                                    
+                                        </div>
+                                        <div class="col-12 col-sm-12 col-md-1 col-lg-1 " align="center">
+                                
+                               
+                                            <button src="/iconos/guardar48x48.png" 
+                                                    style="background-color:#d6eefd; border:none ;" 
+                                                    autodisable="self"
+                                                    class="btn btn btn-secondary btn-sm "
+                                                    onClick="@command('Guardar')"
+                                                    tooltiptext="Guardar factura"/>
+                           
+                                        </div>
+                                    </div>
+                                </toolbar>
+                            </div>
+                        </div>
+<!--                        <div class="row">
+                            <div class="col-4 col-sm-4 col-md-3 col-lg-3">
+                                
+                                <radiogroup  selectedItem="@bind(vm.estdoFactura)"   
+                                             class="form-control form-control-sm ">
+                                    <space bar="true"  /> 
+                                    <radio label="PAGADO" value="PA" />  
+                                    <space bar="true"  />                                                                        
+                                    <radio  label="PENDIENTE" value="PE"/>     
+                                    <space bar="true"  />                                            
+                                </radiogroup>
+                       
+                            </div>
+                            
+                            
+                         
+                            
+                            <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+                        
+                                <separator height="15px"/>
+                            </div>
+                        </div>-->
+                        
+                        
+
+                        <div class="row">
+
+                            <div class="col-7 col-sm-7 col-md-7 col-lg-7" align="end">
+                                <listbox id="DescripcionPedidoPrePost" model="@load(vm.listaDetalleFacturaDAOMOdel)"
+                                         nonselectableTags="*" checkmark="true"  
+                                         multiple="true" 
+                                         onSelect="@command('seleccionarRegistros')"  width="99%">
+                                    <custom-attributes org.zkoss.zul.listbox.rod="true"/>
+                                              
+                                        
+                                    <listhead>
+                                        <listheader width="10%"  label="" align="left" >
+                                            <button label="" src="/iconos/eliminar.png"  
+                                                    onClick="@command('eliminarRegistros')"  
+                                                    class="btn btn btn-secondary btn-sm "
+                                                    tooltiptext="Eliminar registros seleccionados"/>
+                                        </listheader>
+                                        <listheader width="15%"  label="CODIGO" align="left" />
+                                        <listheader width="15%"  label="CANTIDAD" align="left"  /> 
+                                        <listheader width="55%"  label="DESCRIPCIÓN" align="left" />
+                                        <listheader width="15%"  label="UNITARIO" align="left" /> 
+                                        <!--<listheader width="15%"  label="SUBTOTAL" align="left" />-->
+                                        <!--<listheader width="15%"  label="IVA" align="left" />-->
+                                        <listheader width="15%"  label="TOTAL" align="left" />
+                                                                                                                            
+                                    </listhead>
+                    
+                                    <template name="model">                                                            
+                                        <listitem>
+                                            <listcell>
+                                                    
+                                            </listcell>
+                                            <listcell >
+                                                <textbox onDoubleClick="@command('cambiarRegistro',valor=each)"
+                                                         class="form-control form-control-sm"
+                                                         value="@bind(each.codigo)" 
+                                                         onOK="@command('buscarPorCodigo',valor=each)" width="99%" />
+                                            </listcell>
+                                            <listcell>
+                                                <spinner onOK="@command('calcularValores',valor=each)"  
+                                                         class="input-group-append"
+                                                         format="###.#####" value="@bind(each.cantidad)" width="95%"  />
+                                            </listcell>
+                                            <listcell>
+                                                <label  value="@bind(each.producto.prodNombre)" width="99%" />
+                                            </listcell>
+                                            <listcell>
+                                                <decimalbox readonly="true" format="###.#####"
+                                                            class="form-control form-control-sm"
+                                                            value="@bind(each.subTotal)"  width="99%" />
+                                            </listcell>
+                                            <!--                                            <listcell>
+                                                <decimalbox readonly="true" format="###.#####" 
+                                                            class="form-control form-control-sm"
+                                                            value="@bind(each.total)"  width="99%" />
+                                            </listcell>
+                                            <listcell>
+                                                <decimalbox readonly="true" format="###.#####" 
+                                                            class="form-control form-control-sm"
+                                                            value="@bind(each.detIva)"  width="99%" />
+                                            </listcell>-->
+                                            <listcell>
+                                                <decimalbox readonly="true" format="###.#####"
+                                                            class="form-control form-control-sm"
+                                                            value="@bind(each.detTotalconiva)"  width="99%" />
+                                            </listcell>
+                                        </listitem>
+                                    </template>
+
+                                </listbox>
+                            </div>
+                            <div class="col-5 col-sm-5 col-md-5 col-lg-5 " align="end">
+                                <div class="row">
+                                    <div class="col-6 col-sm-6 col-md-4 col-lg-4  form-control btn-outline-primary btn-sm" align="center"
+                                         onClick="@command('agregarItemPrincipal',valor=vm.p1.prodSerie)">
+                                        <label value="@bind(vm.p1.prodNombre)" 
+                                               onClick="@command('agregarItemPrincipal',valor=vm.p1.prodSerie)" />
+                                        
+                                    </div>
+                                    <div class="col-6 col-sm-6 col-md-4 col-lg-4  form-control btn-outline-success  btn-sm" 
+                                         onClick="@command('agregarItemPrincipal',valor=vm.p2.prodSerie)"   align="center">
+                                
+                                        <label value="@bind(vm.p2.prodNombre)"           
+                                            
+                                               onClick="@command('agregarItemPrincipal',valor=vm.p2.prodSerie)"    
+                                               tooltiptext="Agregar"/>
+                                    </div>
+                                    <div class="col-6 col-sm-6 col-md-4 col-lg-4  form-control  btn-outline-danger btn-sm" 
+                                         onClick="@command('agregarItemPrincipal',valor=vm.p3.prodSerie)" align="center">
+                                
+                                        <label value="@bind(vm.p3.prodNombre)"      
+                                                
+                                               onClick="@command('agregarItemPrincipal',valor=vm.p3.prodSerie)"    
+                                               tooltiptext="Agregar"/>
+                                    </div>
+                                    <div class="col-6 col-sm-6 col-md-4 col-lg-4  form-control  btn-outline-primary btn-sm" 
+                                         onClick="@command('agregarItemPrincipal',valor=vm.p4.prodSerie)" align="center">
+                                
+                                        <label value="@bind(vm.p4.prodNombre)"           
+                                               
+                                               onClick="@command('agregarItemPrincipal',valor=vm.p4.prodSerie)"    
+                                               tooltiptext="Agregar"/>
+                                    </div>
+                                    <div class="col-6 col-sm-6 col-md-4 col-lg-4  form-control  btn-outline-success btn-sm" 
+                                         onClick="@command('agregarItemPrincipal',valor=vm.p5.prodSerie)" align="center">
+                                
+                                        <label value="@bind(vm.p5.prodNombre)"           
+                                               
+                                               onClick="@command('agregarItemPrincipal',valor=vm.p5.prodSerie)"    
+                                               tooltiptext="Agregar"/>
+                                    </div>
+                                    <div class="col-6 col-sm-6 col-md-4 col-lg-4  form-control  btn-outline-danger btn-sm" 
+                                         onClick="@command('agregarItemPrincipal',valor=vm.p6.prodSerie)" align="center">
+                                
+                                        <label value="@bind(vm.p6.prodNombre)"           
+                                                
+                                               onClick="@command('agregarItemPrincipal',valor=vm.p6.prodSerie)"    
+                                               tooltiptext="Agregar"/>
+                                    </div>
+                                    <div class="col-6 col-sm-6 col-md-4 col-lg-4  form-control  btn-outline-primary btn-sm" 
+                                         onClick="@command('agregarItemPrincipal',valor=vm.p7.prodSerie)" align="center">
+                                
+                                        <label value="@bind(vm.p7.prodNombre)"          
+                                               
+                                               onClick="@command('agregarItemPrincipal',valor=vm.p7.prodSerie)"    
+                                               tooltiptext="Agregar"/>
+                                    </div>
+                                    <div class="col-6 col-sm-6 col-md-4 col-lg-4  form-control  btn-outline-success btn-sm" 
+                                         onClick="@command('agregarItemPrincipal',valor=vm.p8.prodSerie)" align="center">
+                                
+                                        <label value="@bind(vm.p8.prodNombre)"          
+                                               
+                                               onClick="@command('agregarItemPrincipal',valor=vm.p8.prodSerie)"    
+                                               tooltiptext="Agregar"/>
+                                    </div>
+                                    <div class="col-6 col-sm-6 col-md-4 col-lg-4  form-control  btn-outline-danger btn-sm" 
+                                         onClick="@command('agregarItemPrincipal',valor=vm.p9.prodSerie)" align="center">
+                                
+                                        <label value="@bind(vm.p9.prodNombre)"          
+                                                
+                                               onClick="@command('agregarItemPrincipal',valor=vm.p9.prodSerie)"    
+                                               tooltiptext="Agregar"/>
+                                    </div>
+                                   <!-- <div class="col-6 col-sm-6 col-md-4 col-lg-4  form-control  btn-outline-primary btn-sm" 
+                                         onClick="@command('agregarItemPrincipal',valor=vm.p10.prodSerie)" align="center">
+                                
+                                        <label value="@bind(vm.p10.prodNombre)"          
+                                               
+                                               onClick="@command('agregarItemPrincipal',valor=vm.p10.prodSerie)"    
+                                               tooltiptext="Agregar"/>
+                                    </div>
+                                    <div class="col-6 col-sm-6 col-md-4 col-lg-4  form-control  btn-outline-success btn-sm" 
+                                         onClick="@command('agregarItemPrincipal',valor=vm.p11.prodSerie)" align="center">
+                                
+                                        <label value="@bind(vm.p11.prodNombre)"           
+                                               
+                                               onClick="@command('agregarItemPrincipal',valor=vm.p11.prodSerie)"    
+                                               tooltiptext="Agregar"/>
+                                    </div>
+                                    <div class="col-6 col-sm-6 col-md-4 col-lg-4  form-control  btn-outline-danger btn-sm" 
+                                         onClick="@command('agregarItemPrincipal',valor=vm.p12.prodSerie)" align="center">
+                                
+                                        <label value="@bind(vm.p12.prodNombre)"         
+                                                
+                                               onClick="@command('agregarItemPrincipal',valor=vm.p12.prodSerie)"    
+                                               tooltiptext="Agregar"/>
+                                    </div>
+                                    <div class="col-6 col-sm-6 col-md-4 col-lg-4  form-control  btn-outline-primary btn-sm" 
+                                         onClick="@command('agregarItemPrincipal',valor=vm.p13.prodSerie)" align="center">
+                                
+                                        <label value="@bind(vm.p13.prodNombre)"           
+                                               
+                                               onClick="@command('agregarItemPrincipal',valor=vm.p13.prodSerie)"    
+                                               tooltiptext="Agregar"/>
+                                    </div>
+                                    <div class="col-6 col-sm-6 col-md-4 col-lg-4  form-control  btn-outline-success btn-sm" 
+                                         onClick="@command('agregarItemPrincipal',valor=vm.p14.prodSerie)" align="center">
+                                
+                                        <label value="@bind(vm.p14.prodNombre)"         
+                                               
+                                               onClick="@command('agregarItemPrincipal',valor=vm.p14.prodSerie)"    
+                                               tooltiptext="Agregar"/>
+                                    </div>
+                                    <div class="col-6 col-sm-6 col-md-4 col-lg-4  form-control  btn-outline-danger btn-sm" 
+                                         onClick="@command('agregarItemPrincipal',valor=vm.p15.prodSerie)" align="center">
+                                
+                                        <label value="@bind(vm.p15.prodNombre)"          
+                                                
+                                               onClick="@command('agregarItemPrincipal',valor=vm.p15.prodSerie)"    
+                                               tooltiptext="Agregar"/>
+                                    </div>
+                                    <div class="col-6 col-sm-6 col-md-4 col-lg-4  form-control  btn-outline-primary btn-sm" 
+                                         onClick="@command('agregarItemPrincipal',valor=vm.p16.prodSerie)" align="center">
+                                
+                                        <label value="@bind(vm.p16.prodNombre)"          
+                                               
+                                               onClick="@command('agregarItemPrincipal',valor=vm.p16.prodSerie)"    
+                                               tooltiptext="Agregar"/>
+                                    </div>
+                                    <div class="col-6 col-sm-6 col-md-4 col-lg-4  form-control  btn-outline-success btn-sm" 
+                                         onClick="@command('agregarItemPrincipal',valor=vm.p17.prodSerie)" align="center">
+                                
+                                        <label value="@bind(vm.p17.prodNombre)"          
+                                               
+                                               onClick="@command('agregarItemPrincipal',valor=vm.p17.prodSerie)"    
+                                               tooltiptext="Agregar"/>
+                                    </div>
+                                    <div class="col-6 col-sm-6 col-md-4 col-lg-4  form-control  btn-outline-danger btn-sm" 
+                                         onClick="@command('agregarItemPrincipal',valor=vm.p18.prodSerie)" align="center">
+                                
+                                        <label value="@bind(vm.p18.prodNombre)"         
+                                                
+                                               onClick="@command('agregarItemPrincipal',valor=vm.p18.prodSerie)"    
+                                               tooltiptext="Agregar"/>
+                                    </div>
+                                    <div class="col-6 col-sm-6 col-md-4 col-lg-4  form-control  btn-outline-primary btn-sm" 
+                                         onClick="@command('agregarItemPrincipal',valor=vm.p19.prodSerie)" align="center">
+                                
+                                        <label value="@bind(vm.p19.prodNombre)"          
+                                               
+                                               onClick="@command('agregarItemPrincipal',valor=vm.p19.prodSerie)"    
+                                               tooltiptext="Agregar"/>
+                                    </div>
+                                    <div class="col-6 col-sm-6 col-md-4 col-lg-4  form-control  btn-outline-success btn-sm" 
+                                         onClick="@command('agregarItemPrincipal',valor=vm.p20.prodSerie)" align="center">
+                                
+                                        <label value="@bind(vm.p20.prodNombre)"          
+                                               
+                                               onClick="@command('agregarItemPrincipal',valor=vm.p20.prodSerie)"    
+                                               tooltiptext="Agregar"/>
+                                    </div>
+                                    <div class="col-6 col-sm-6 col-md-4 col-lg-4  form-control  btn-outline-danger btn-sm" 
+                                         onClick="@command('agregarItemPrincipal',valor=vm.p21.prodSerie)" align="center">
+                                
+                                        <label value="@bind(vm.p21.prodNombre)"          
+                                                
+                                               onClick="@command('agregarItemPrincipal',valor=vm.p21.prodSerie)"    
+                                               tooltiptext="Agregar"/>
+                                    </div>
+                                    <div class="col-6 col-sm-6 col-md-4 col-lg-4  form-control  btn-outline-primary btn-sm" 
+                                         onClick="@command('agregarItemPrincipal',valor=vm.p22.prodSerie)" align="center">
+                                
+                                        <label value="@bind(vm.p22.prodNombre)" width="100%" height="40px"    
+                                               
+                                               onClick="@command('agregarItemPrincipal',valor=vm.p22.prodSerie)"    
+                                               tooltiptext="Agregar"/>
+                                    </div>
+                                    <div class="col-6 col-sm-6 col-md-4 col-lg-4  form-control  btn-outline-success btn-sm" 
+                                         onClick="@command('agregarItemPrincipal',valor=vm.p23.prodSerie)" align="center">
+                                
+                                        <label value="@bind(vm.p23.prodNombre)"          
+                                               
+                                               onClick="@command('agregarItemPrincipal',valor=vm.p23.prodSerie)"    
+                                               tooltiptext="Agregar"/>
+                                    </div>
+                                    <div class="col-6 col-sm-6 col-md-4 col-lg-4  form-control  btn-outline-danger btn-sm" 
+                                         onClick="@command('agregarItemPrincipal',valor=vm.p24.prodSerie)" align="center">
+                                
+                                        <label value="@bind(vm.p24.prodNombre)"           
+                                               onClick="@command('agregarItemPrincipal',valor=vm.p24.prodSerie)"    
+                                               tooltiptext="Agregar"/>
+                                    </div>-->
+                                </div>
+
+                                
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-4 col-sm-4 col-md-7 col-lg-7">
+                                
+                                <textbox multiline="true" rows="2" 
+                                         placeholder="Ingrese una observación"
+                                         value="@bind(vm.facturaDescripcion)"
+                                         class="form-control form-control-sm textoFechaDateBox"  
+                                         maxlength="150" />
+                            </div>
+                        </div>
+                    </div>
+                </tabpanel>
+            </tabpanels>
+        </tabbox>    
+    </hbox>
+
+
+</zk>
