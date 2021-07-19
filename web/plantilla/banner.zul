@@ -29,11 +29,11 @@
             class="col-12 col-sm-12 col-md-12 col-lg-12" >
          
                 <menubar id="menubar" orient="horizontal"  autodrop="true" >
-                    <menuitem id="btnDominio" label="R. Dominio" class="btn  form-control-sm pestañas"/>
+                    <!--<menuitem id="btnDominio" label="R. Dominio" class="btn  form-control-sm pestañas"/>-->
                            
                     <menuitem id="btnSeguimiento" label="Seguimiento" class="btn  form-control-sm pestañas"/>
                            
-                    <menu label="Cotización" class="btn  form-control-sm pestañas">
+<!--                    <menu label="Cotización" class="btn  form-control-sm pestañas">
                         <menupopup>                     
                       
                             <menuitem label="Generar Cotizar" id="btnCotizacion" class="btn btn-info form-control-sm letrasMenuOpcionesBoost"     image="/menu/page.png" />
@@ -43,7 +43,7 @@
                             <menuitem label="Cotizaciones Finalizadas" class="btn btn-info form-control-sm banner"  id="btnCotizacionFinalizada" image="/menu/flag_red.png" />
                             <menuitem label="Cotizaciones Facturadas" class="btn btn-info form-control-sm banner"  id="btnCotizacionFacturada" image="/menu/flag_purple.png" />
                         </menupopup>
-                    </menu>          
+                    </menu>          -->
                                                              
                     <menuitem id="btnAdministrar" label="Administrar" class="btn  form-control-sm pestañas letrasMenuOpcionesBoost" />
                     <!--                        <menuitem image="/iconos/fact.png" label="Facturar" onClick="@command('facturar')" />

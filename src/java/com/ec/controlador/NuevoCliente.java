@@ -80,7 +80,7 @@ public class NuevoCliente {
                 && idPersona.getPerNombre() != null
                 && idPersona.getPrDireccion() != null
                 && cliente.getCliNombreComercial() != null) {
-
+//                cliente.setCliNombreComercial(idPersona.getPerNombre());
             Persona vaerifica = servicioPersona.findByPerDni(idPersona.getPerDni());
             if (accion.equals("create")) {
 
@@ -92,14 +92,16 @@ public class NuevoCliente {
                     servicioPersona.crear(idPersona);
                     servicioCliente.crear(cliente);
                     windowClienteCrm.detach();
+                    Clients.showNotification("Creado correctamente", Clients.NOTIFICATION_TYPE_INFO, null, "middle_center", 1000, true);
                 } else {
                     idPersona.setIdPersona(vaerifica.getIdPersona());
                     cliente.setCliFechaActualizacion(new Date());
                     cliente.setIdPersona(idPersona);
                     cliente.setIdUsuario(credential.getUsuarioSistema());
                     servicioPersona.modificar(idPersona);
-                    servicioCliente.crear(cliente);
+                    servicioCliente.modificar(cliente);
                     windowClienteCrm.detach();
+                    Clients.showNotification("Modificado carrectamente", Clients.NOTIFICATION_TYPE_INFO, null, "middle_center", 1000, true);
                 }
 
             } else {
@@ -110,7 +112,7 @@ public class NuevoCliente {
             }
 
         } else {
-            Clients.showNotification("Verifique su informacion", Clients.NOTIFICATION_TYPE_INFO, null, "middle_center", 5000, true);
+            Clients.showNotification("Verifique su informacion", Clients.NOTIFICATION_TYPE_ERROR, null, "middle_center", 2000, true);
         }
     }
 

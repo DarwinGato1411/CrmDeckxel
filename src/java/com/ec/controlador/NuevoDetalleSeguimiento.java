@@ -91,9 +91,9 @@ public class NuevoDetalleSeguimiento {
             servicioDetalleSeguimiento.crear(detalleSeguimiento);
             /*PROMIXA RENOVACION*/
 
-            seguimiento.setSegFechaProxima(detalleSeguimiento.getDetsFechaProxima());
-            seguimiento.setSegDescripcion(detalleSeguimiento.getDetsObservacion());
-            servicioSeguimiento.modificar(seguimiento);
+//            seguimiento.setSegFechaProxima(detalleSeguimiento.getDetsFechaProxima());
+//            seguimiento.setSegDescripcion(detalleSeguimiento.getDetsObservacion());
+//            servicioSeguimiento.modificar(seguimiento);
             cosultarDetalles();
             detalleSeguimiento = new DetalleSeguimiento();
         } else {

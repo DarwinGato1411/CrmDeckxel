@@ -75,8 +75,12 @@ public class Seguimiento implements Serializable {
     public String getColorEstado() {
         long MILLSECS_PER_DAY = 24 * 60 * 60 * 1000; //Milisegundos al día 
         Date fechaInicial = new Date();
+        colorEstado = "G";
+        int dias = 0;
+        if (segFechaProxima != null) {
+            dias = (int) ((segFechaProxima.getTime() - fechaInicial.getTime()) / MILLSECS_PER_DAY);
+        }
 
-        int dias = (int) ((segFechaProxima.getTime() - fechaInicial.getTime()) / MILLSECS_PER_DAY);
 //        System.out.println("dias  " + dias + " fecha caduca " + segFechaProxima + " fecha actual " + fechaInicial);
         if (dias > 5) {
             colorEstado = "G";
@@ -84,7 +88,10 @@ public class Seguimiento implements Serializable {
             colorEstado = "Y";
         } else if (dias <= 2) {
             colorEstado = "R";
+        } else {
+            colorEstado = "R";
         }
+
         return colorEstado;
     }
 

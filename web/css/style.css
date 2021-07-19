@@ -619,3 +619,18 @@
   margin-right: auto;
   width: 50%;
 }
+.btn-editar {
+  color: #fff;
+  background-color: #0099de;
+  border-color: #0099de;
+}
+.btn-detalle {
+  color: #fff;
+  background-color: #ff7f0e;
+  border-color: #ff7f0e;
+}
+.btn-renovar {
+  color: #fff;
+  background-color: #00b05b;
+  border-color: #00b05b;
+}

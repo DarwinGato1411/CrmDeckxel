@@ -15,7 +15,7 @@
                                 
                         <tab label="Cliente" sclass="menutabs" /> 
                         <tab label="Empleado" sclass="menutabs" />
-                        <tab label="Producto" sclass="menutabs" /> 
+                        <!--<tab label="Producto" sclass="menutabs" />--> 
                         <tab label="Usuario" sclass="menutabs" />  
                         <tab label="Tipo de servicio" sclass="menutabs" /> 
                                 
@@ -32,11 +32,11 @@
                             <include src="/administrar/admempleado.zul"/>  
                 
                         </tabpanel>
-                        <tabpanel  height="98%" width="99%"  >                    
+<!--                        <tabpanel  height="98%" width="99%"  >                    
                 
                             <include src="/administrar/admproducto.zul"/>  
                 
-                        </tabpanel>
+                        </tabpanel>-->
                             
                         <tabpanel height="auto" hflex="min">
                             <listbox width="auto" model="@load(vm.listaUsuarios)" nonselectableTags="*"  mold="paging" pageSize="9">

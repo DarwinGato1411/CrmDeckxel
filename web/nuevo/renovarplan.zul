@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<window  id="wSeguimiento"  position="center" width="300px" closable="true"  
+         apply="org.zkoss.bind.BindComposer" contentStyle="overflow:auto"
+         viewModel="@id('vm') @init('com.ec.controlador.NuevoSeguimiento')">
+    
+    <caption label="Renovar Plan" style="font-weight:bold"/> 
+    
+    <div  class="container" >
+        <div  class="row" >
+           
+            <div class="col-12 col-sm-12 col-md-12 col-lg-12  form-group " align="center" >
+                <label value="(*) " style="color:red;font-weight:bold"/>Nueva Fecha de Cobro:
+                
+                <datebox compact="true" value="@bind(vm.seguimiento.segFechaProxima)"  
+                         readonly="true"   style="font-weight:bold" 
+                         buttonVisible="true" lenient="true" 
+                         class="textoFechaDateBox" 
+                         format="dd/MM/yyyy"   tooltiptext="Fecha de registro"/>
+            </div>
+      
+        </div>
+                             
+        <div class="col-12 col-sm-12 col-md-12 col-lg-12  form-group" align="center" >
+                    
+            <image src="/iconos/save48.png"  
+                   onClick="@command('guardar')"
+                   tooltiptext="Guardar Registro"/>
+ 
+
+        </div> 
+    </div>
+                  
+</window>

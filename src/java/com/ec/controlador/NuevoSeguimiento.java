@@ -45,10 +45,12 @@ public class NuevoSeguimiento {
     public void afterCompose(@ExecutionArgParam("valor") Seguimiento seguimiento, @ContextParam(ContextType.VIEW) Component view) {
         Selectors.wireComponents(view, this, false);
         if (seguimiento != null) {
+            accion = "update";
             this.seguimiento = seguimiento;
             this.clienteSelected = seguimiento.getIdCliente();
 
         } else {
+            accion = "create";
             this.seguimiento = new Seguimiento();
             this.clienteSelected = null;
 

@@ -84,13 +84,13 @@
                                                  onChange="self.setValue(self.getValue().toUpperCase());" />
                                     </listheader>  
           
-                                    <listheader width="10%"  label="FECHA REGISTRO "  /> 
-                                    <listheader width="10%"  label="PROXIMA VISITA"  />        
+                                    <!--<listheader width="10%"  label="FECHA REGISTRO "  />--> 
+                                    <listheader width="10%"  label="PROX COBRO"  />        
                                     <listheader width="35%"  label="DESCRIPCION"/>
                                     
                                     <listheader hflex="min" class="letracabeceralist" label="MD" align="center"/>
                                     <listheader hflex="min" class="letracabeceralist" label="DET" align="center"/>
-                            
+                                    <listheader hflex="min" class="letracabeceralist" label="REN" align="center"/>
                                 </listhead>  
                     
                                 <template name="model">                                                            
@@ -125,7 +125,7 @@
                                                      sclass="letraLisbox" readonly="true" 
                                                      value="@bind(each.idCliente.cliNombreComercial)" width="100%" />
                                         </listcell>
-                                        <listcell style="font-size:11px;background-color:#d6eefd" zclass = "mycss-listcell">
+                                        <!--<listcell style="font-size:11px;background-color:#d6eefd" zclass = "mycss-listcell">
                                             <datebox class="form-control form-control-sm"
                                                      style="font-size:11px;background-color:#d6eefd"
                                                      compact="true" 
@@ -134,10 +134,10 @@
                                                      format="medium"
                                                      value="@bind(each.segFechaActividad)" width="100%" />
                                         </listcell>
-                                        
+                                        -->
                                         <listcell style="font-size:11px;background-color:#d6eefd" zclass = "mycss-listcell">
                                             <datebox class="form-control form-control-sm"
-                                                         style="font-size:11px;background-color:#d6eefd"
+                                                     style="font-size:11px;background-color:#d6eefd"
                                                      compact="true" 
                                                      readonly="true"
                                                      buttonVisible="false"
@@ -153,15 +153,22 @@
                                         
                                         <listcell style="font-size:11px;background-color:#d6eefd" zclass = "mycss-listcell">    
                                             <button src="/iconos/pencil.png"
-                                                    class="btn-danger"
+                                                    class="btn-editar"
                                                     onClick="@command('modificar',valor=each)" 
                                                     tooltiptext="Modificar cliente"/>
                                     
                                         </listcell>
                                         <listcell style="font-size:11px;background-color:#d6eefd" zclass = "mycss-listcell">    
                                             <button src="/iconos/page_white_text.png"
-                                                    class="btn-primary"
+                                                    class="btn-detalle"
                                                     onClick="@command('detalleSeguimiento',valor=each)" 
+                                                    tooltiptext="Detalle de seguimiento"/>
+                                    
+                                        </listcell>
+                                        <listcell style="font-size:11px;background-color:#d6eefd" zclass = "mycss-listcell">    
+                                            <button src="/iconos/renovar.png"
+                                                    class="btn-renovar"
+                                                    onClick="@command('renovaplan',valor=each)" 
                                                     tooltiptext="Detalle de seguimiento"/>
                                     
                                         </listcell>

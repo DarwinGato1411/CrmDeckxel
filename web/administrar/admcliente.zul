@@ -15,24 +15,25 @@
         </auxhead>
                     
         <listhead> 
-            <listheader width="8%" label="Cédula" >
+            <listheader width="10%" label="Cédula" >
             </listheader>     
-            <listheader width="15%" label="Razon Social" >
-            </listheader> 
-            <listheader width="15%"   >
+            <listheader width="20%" >
                 <textbox value="@bind(vm.buscarNombre)" 
                          class="form-control form-control-sm"
-                         tooltiptext="Nombre Comercial"
-                         placeholder="Nombre Comercial"
+                         tooltiptext="Nombre Cliente"
+                         placeholder="Nombre Cliente"
                          onOK="@command('likeCliNombreComercial')"
                          onChange="self.setValue(self.getValue().toUpperCase());" />
             </listheader> 
+            <listheader width="20%" label="Nombre Comercial"  >
+                
+            </listheader> 
           
-            <listheader width="25%"  label="DIRECCION "  /> 
-            <listheader width="7%"  label="TELEFONO "  />        
+            <listheader width="22%"  label="DIRECCION "  /> 
+            <listheader width="10%"  label="TELEFONO "  />        
             <listheader width="10%"  label="MOVIL"/>
-            <listheader width="15%"  label="CORREO"/>
-            <listheader width="5%"  label="OPCIONES" align="center"/>
+            <!--<listheader width="15%"  label="CORREO"/>-->
+            <listheader width="8%"  label="OPCIONES" align="center"/>
                             
         </listhead>  
                     
@@ -69,11 +70,11 @@
                              style="font-size:11px;background-color:#d6eefd;" 
                              sclass="letraLisbox" readonly="true"  value="@bind(each.idPersona.perMovil)" width="100%" />
                 </listcell>
-                <listcell style="font-size:11px;background-color:#d6eefd" zclass = "mycss-listcell">
+<!--                <listcell style="font-size:11px;background-color:#d6eefd" zclass = "mycss-listcell">
                     <textbox class="form-control form-control-sm"
                              style="font-size:11px;background-color:#d6eefd;" 
                              sclass="letraLisbox" readonly="true" value="@bind(each.idPersona.perCorreo)" width="100%" />
-                </listcell>
+                </listcell>-->
                 <listcell style="font-size:11px;background-color:#d6eefd" zclass = "mycss-listcell">   
                     <image src="/iconos/editar.png"
                            class="grow"

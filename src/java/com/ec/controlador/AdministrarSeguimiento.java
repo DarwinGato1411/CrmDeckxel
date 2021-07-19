@@ -4,7 +4,9 @@
  */
 package com.ec.controlador;
 
+import com.ec.entidad.DetalleSeguimiento;
 import com.ec.entidad.Seguimiento;
+import static com.ec.entidad.Seguimiento_.segFechaProxima;
 import com.ec.servicio.ServicioSeguimiento;
 import java.util.ArrayList;
 import java.util.Date;
@@ -14,6 +16,7 @@ import org.zkoss.bind.annotation.BindingParam;
 import org.zkoss.bind.annotation.Command;
 import org.zkoss.bind.annotation.NotifyChange;
 import org.zkoss.zk.ui.Executions;
+import org.zkoss.zk.ui.util.Clients;
 
 /**
  *
@@ -94,7 +97,18 @@ public class AdministrarSeguimiento {
         org.zkoss.zul.Window window = (org.zkoss.zul.Window) Executions.createComponents(
                 "/nuevo/detseguimiento.zul", null, map);
         window.doModal();
-    }
+    } 
+    
+    @Command
+    @NotifyChange("listaSeguimiento")
+    public void renovaplan(@BindingParam("valor") Seguimiento valor) {
+        final HashMap<String, Seguimiento> map = new HashMap<String, Seguimiento>();
+        map.put("valor", valor);
+        org.zkoss.zul.Window window = (org.zkoss.zul.Window) Executions.createComponents(
+                "/nuevo/renovarplan.zul", null, map);
+        window.doModal();
+    } 
+    
 
     /*ADMINISTRAR USUARIO*/
     private void findByBetweenFechaRegistro() {

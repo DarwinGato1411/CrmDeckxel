@@ -65,7 +65,7 @@ public class ServicioCliente {
             em.merge(cliente);
             em.getTransaction().commit();
         } catch (Exception e) {
-            System.out.println("Error en insertar cliente");
+            System.out.println("Error en modificar cliente");
         } finally {
             em.close();
         }

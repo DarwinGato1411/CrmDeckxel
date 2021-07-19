@@ -18,7 +18,7 @@
                              class="textoFechaDateBox" 
                              format="dd/MM/yyyy"   tooltiptext="Fecha de registro"/>
                 </div>
-                <div class="col-12 col-sm-12 col-md-12 col-lg-12  form-group "  >
+<!--                <div class="col-12 col-sm-12 col-md-12 col-lg-12  form-group "  >
                     <label value="(*) " style="color:red;font-weight:bold"/>Proxima Fecha:
                 
                     <datebox compact="true" value="@bind(vm.detalleSeguimiento.detsFechaProxima)"  
@@ -26,16 +26,23 @@
                              buttonVisible="true" lenient="true" 
                              class="textoFechaDateBox" 
                              format="dd/MM/yyyy"   tooltiptext="Fecha de registro"/>
-                </div>
+                </div>-->
               
            
             
                 <div class="col-12 col-sm-12 col-md-12 col-lg-12  form-group "  >
                     <label value="(*)" style="color:transparent;font-weight:bold"/>Tipo de contacto:
-                    <textbox  maxlength="40"                             
+<!--                    <textbox  maxlength="40"                             
                               value="@bind(vm.detalleSeguimiento.detsTipoContacto)" 
                               onChange="self.setValue(self.getValue().toUpperCase());" 
-                              class="form-control" />              
+                              class="form-control" />    -->
+                    <combobox readonly="true"    
+                              style="width:100%"                                    
+                              selectedItem="@bind(vm.detalleSeguimiento.detsTipoContacto)" >
+                        <comboitem label="LLAMADA" value="LLAMADA" />                    
+                        <comboitem label="MENSAJE" value="MENSAJE" />
+                        <comboitem label="VISITA" value="VISITA" />
+                    </combobox>           
                 </div> 
                 <div class="col-12 col-sm-12 col-md-12 col-lg-12  form-group "  >
                     <label value="(*)" style="color:transparent;font-weight:bold"/>Observación:
@@ -44,7 +51,8 @@
                               rows="3"
                               value="@bind(vm.detalleSeguimiento.detsObservacion)" 
                               onChange="self.setValue(self.getValue().toUpperCase());" 
-                              class="form-control" />              
+                              class="form-control" />       
+                          
                 </div> 
                 <div class="col-12 col-sm-12 col-md-12 col-lg-12  form-group" align="center" >
                     
@@ -61,10 +69,9 @@
                          nonselectableTags="*"  mold="paging" pageSize="50"  >
                     <custom-attributes org.zkoss.zul.listbox.rod="true"/>                    
                     <listhead> 
-                        <listheader width="15%"  label="RENOVACION "  /> 
-                        <listheader width="15%"  label="COSTO "  />        
-                        <listheader width="10%"  label="TIP. CONTACTO"/>
-                        <listheader width="50%"  label="OBSERVACION"/>
+                        <listheader width="25%"  label="FECHA DE CONTACTO"  />    
+                        <listheader width="22%"  label="TIPO DE CONTACTO"/>
+                        <listheader width="43%"  label="OBSERVACION"/>
                         <listheader width="10%"  label=""/>
                    
                             
@@ -80,14 +87,7 @@
                                          format="medium"
                                          value="@bind(each.detsFechaContacto)" width="100%" />
                             </listcell>
-                            <listcell zclass = "mycss-listcell">
-                                <datebox compact="true" 
-                                         readonly="true"
-                                         buttonVisible="false"                                                        
-                                         format="medium"
-                                         value="@bind(each.detsFechaProxima)" width="100%" />
-                            </listcell>
-                         
+                           
                             <listcell zclass = "mycss-listcell">
                                 <textbox sclass="letraLisbox" readonly="true"
                                          value="@bind(each.detsTipoContacto)" width="100%" />

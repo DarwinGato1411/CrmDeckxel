@@ -7,7 +7,7 @@
     
     <div  class="container" >
         <div  class="row" >
-            <div class="col-12 col-sm-12 col-md-12 col-lg-12  form-group "  >
+            <div class="col-12 col-sm-12 col-md-8 col-lg-8  form-group "  >
                 <label   style="color:red;font-weight:bold" value="(*) "  />Cliente
                 <combobox    model="@load(vm.listaClientesAll)" autodrop="true" buttonVisible="false"
                              selectedItem="@bind(vm.clienteSelected)"
@@ -29,7 +29,7 @@
                          format="dd/MM/yyyy"   tooltiptext="Fecha de registro"/>
             </div>
             
-            <div class="col-12 col-sm-12 col-md-4 col-lg-4  form-group "  >
+<!--            <div class="col-12 col-sm-12 col-md-4 col-lg-4  form-group "  >
                 <label value="(*) " style="color:red;font-weight:bold"/>Fecha de proxima visita:
                 
                 <datebox compact="true" value="@bind(vm.seguimiento.segFechaProxima)"  
@@ -38,7 +38,7 @@
                          class="textoFechaDateBox" 
                          format="dd/MM/yyyy"   tooltiptext="Fecha de registro"/>
             </div>
-            
+            -->
             <div class="col-12 col-sm-12 col-md-12 col-lg-12  form-group "  >
                 <label value="(*)" style="color:transparent;font-weight:bold"/>Observación:
                 <textbox  maxlength="150"  

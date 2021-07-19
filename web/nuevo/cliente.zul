@@ -14,7 +14,7 @@
                           class="form-control" />
             </div>
               <div class="col-12 col-sm-12 col-md-4 col-lg-4  form-group "  >
-                <label value="(*) " style="color:red;font-weight:bold"/>Telefono Convencional:
+                <label value="(*) " style="color:red;font-weight:bold"/>Telefono:
                 
                 <textbox  maxlength="20"
                           value="@bind(vm.idPersona.perContacto)" 
@@ -22,14 +22,14 @@
                           class="form-control" />
             </div>
               <div class="col-12 col-sm-12 col-md-4 col-lg-4  form-group "  >
-                <label value="(*)" style="color:transparent;font-weight:bold"/>Movil:
+                <label value="(*)" style="color:transparent;font-weight:bold"/>Convencional:
               
                 <textbox  maxlength="20"  
                           value="@bind(vm.idPersona.perMovil)"
                           class="form-control" />
             </div>          
             <div class="col-12 col-sm-12 col-md-6 col-lg-6  form-group "  >
-                <label value="(*) " style="color:red;font-weight:bold"/>Razon Social:
+                <label value="(*) " style="color:red;font-weight:bold"/>Nombre Cliente:
                 
                 <textbox  maxlength="100" 
                           onChange="self.setValue(self.getValue().toUpperCase())"
@@ -45,34 +45,38 @@
                            class="form-control" />
               
             </div>
-            <div class="col-12 col-sm-12 col-md-6 col-lg-6  form-group "  >
+<!--            <div class="col-12 col-sm-12 col-md-6 col-lg-6  form-group "  >
                 <label value="(*) " style="color:red;font-weight:bold"/>Persona de contacto:
                 
                 <textbox  maxlength="100" 
                           onChange="self.setValue(self.getValue().toUpperCase())"
                           value="@bind(vm.cliente.personaContacto)" 
                           class="form-control" />
-            </div>
-          
-            
-          
+            </div>-->
           
             <div class="col-12 col-sm-12 col-md-6 col-lg-6  form-group "  >
-                <label value="(*) " style="color:red;font-weight:bold"/>Correo: 
+                <label value="(*) " style="color:transparent;font-weight:bold"/>Correo: 
                 
                 <textbox  maxlength="150" 
                           value="@bind(vm.idPersona.perCorreo)"                          
                           class="form-control" />
             </div>
             
-            <div class="col-12 col-sm-12 col-md-12 col-lg-12  form-group "  >
-                <label value="(*)" style="color:transparent;font-weight:bold"/>Direccion:
+            <div class="col-12 col-sm-12 col-md-6 col-lg-6  form-group "  >
+                <label value="(*)" style="color:red;font-weight:bold"/>Direccion:
                 <textbox  maxlength="150"  
                 onChange="self.setValue(self.getValue().toUpperCase());" 
                           value="@bind(vm.idPersona.prDireccion)" 
                           class="form-control" />              
             </div> 
-            <div class="col-12 col-sm-12 col-md-12 col-lg-12  form-group "  >
+            <div class="col-12 col-sm-12 col-md-6 col-lg-6  form-group "  >
+                <label value="(*)" style="color:transparent;font-weight:bold"/>Clave Firma:
+                <textbox  maxlength="150"  
+                onChange="self.setValue(self.getValue().toUpperCase());" 
+                          value="@bind(vm.cliente.cliClave)" 
+                          class="form-control" />              
+            </div> 
+<!--            <div class="col-12 col-sm-12 col-md-12 col-lg-12  form-group "  >
                 <label value="(*)" style="color:transparent;font-weight:bold"/>Pagina web:
                 <textbox  maxlength="150"  
                           value="@bind(vm.cliente.perWeb)" 
@@ -84,7 +88,7 @@
                 onChange="self.setValue(self.getValue().toUpperCase());" 
                           value="@bind(vm.cliente.perIndustria)" 
                           class="form-control" />              
-            </div> 
+            </div> -->
        
         </div>
                              
